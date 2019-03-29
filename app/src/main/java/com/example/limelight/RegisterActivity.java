@@ -2,9 +2,7 @@ package com.example.limelight;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.graphics.Color;
 import android.graphics.drawable.AnimationDrawable;
-import android.os.Build;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -13,17 +11,15 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.RelativeLayout;
 
-import static android.view.View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN;
-
-public class LoginActivity extends AppCompatActivity {
+public class RegisterActivity extends AppCompatActivity {
     private RelativeLayout relativeLayout;
     private AnimationDrawable animationDrawable;
-    private Button registerBtn;
+    private Button userLoginBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
+        setContentView(R.layout.activity_register);
         Window w = getWindow();
         w.setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
 
@@ -36,17 +32,18 @@ public class LoginActivity extends AppCompatActivity {
         // setting exit fade animation duration to 2 seconds
         animationDrawable.setExitFadeDuration(4000);
 
-        //End of animation code
 
-        registerBtn=findViewById(R.id.registerBtn);
-        registerBtn.setOnClickListener(new View.OnClickListener() {
+        //End of animation code
+        userLoginBtn=findViewById(R.id.userLoginBtn);
+
+        userLoginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(LoginActivity.this, RegisterActivity.class);
+                Intent i = new Intent(RegisterActivity.this, LoginActivity.class);
                 startActivity(i);
+
             }
         });
-
 
     }
 

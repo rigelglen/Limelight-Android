@@ -9,10 +9,10 @@
 
 
     <TextView
-        android:id="@+id/loginTitle"
+        android:id="@+id/registerTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/log_in"
+        android:text="@string/register_lowercase"
         android:textStyle="bold"
         android:gravity="center"
         android:textSize="40sp"
@@ -27,7 +27,7 @@
         android:id="@+id/userDetailsContainer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/loginTitle"
+        android:layout_below="@+id/registerTitle"
         >
 
 
@@ -64,6 +64,7 @@
             android:layout_height="wrap_content"
             android:paddingBottom="17dp"
             android:paddingTop="5dp"
+            android:layout_marginBottom="15dp"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
             android:background="@drawable/round_edit_text"
@@ -84,15 +85,41 @@
 
         </android.support.design.widget.TextInputLayout>
 
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/confirmPasswordWrapper"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="17dp"
+            android:paddingTop="5dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/round_edit_text"
+            android:layout_below="@+id/passwordWrapper">
+
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/confirmUserPassword"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPassword"
+                android:layout_marginBottom="5dp"
+                android:background="@null"
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp"
+                android:paddingTop="5dp"
+                android:textSize="15sp"
+                android:hint="@string/confirm_password"/>
+
+        </android.support.design.widget.TextInputLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/buttonContainer"
-            android:layout_below="@+id/passwordWrapper"
+            android:layout_below="@+id/confirmPasswordWrapper"
             android:orientation="vertical">
 
             <Button
-                android:id="@+id/userLoginButton"
+                android:id="@+id/userRegisterButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
@@ -102,12 +129,12 @@
                 android:padding="10dp"
                 android:background="@drawable/round_button"
                 android:textStyle="bold"
-                android:text="@string/login"/>
+                android:text="@string/register"/>
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/new_to_limelight"
+                android:text="@string/already_have_account"
                 android:layout_marginStart="20dp"
                 android:layout_marginEnd="20dp"
                 android:layout_marginTop="20dp"
@@ -118,7 +145,7 @@
                 />
 
             <Button
-                android:id="@+id/registerBtn"
+                android:id="@+id/userLoginBtn"
                 android:layout_marginTop="20dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -126,7 +153,7 @@
                 android:padding="10dp"
                 android:background="@drawable/round_button"
                 android:textStyle="bold"
-                android:text="@string/register"/>
+                android:text="@string/login"/>
         </LinearLayout>
 
     </RelativeLayout>

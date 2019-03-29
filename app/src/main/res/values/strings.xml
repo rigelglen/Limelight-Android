@@ -7,4 +7,8 @@
     <string name="already_have_account">Already have an account?</string>
     <string name="new_to_limelight">New to Limelight?</string>
     <string name="or_string_caps">OR</string>
+    <string name="log_in">Log In</string>
+    <string name="email">Email</string>
+    <string name="register_lowercase">Register</string>
+    <string name="confirm_password">Confirm Password</string>
 </resources>
