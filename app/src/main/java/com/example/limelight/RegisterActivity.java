@@ -9,12 +9,13 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.RelativeLayout;
 
 public class RegisterActivity extends AppCompatActivity {
     private RelativeLayout relativeLayout;
     private AnimationDrawable animationDrawable;
-    private Button userLoginBtn;
+    private ImageButton userLoginBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,14 +35,14 @@ public class RegisterActivity extends AppCompatActivity {
 
 
         //End of animation code
-        userLoginBtn=findViewById(R.id.userLoginBtn);
+        userLoginBtn=findViewById(R.id.back_btn);
 
         userLoginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(RegisterActivity.this, LoginActivity.class);
                 startActivity(i);
-
+                finish();
             }
         });
 
