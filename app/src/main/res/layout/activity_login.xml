@@ -3,141 +3,138 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fillViewport="true">
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_height="wrap_content"
-    android:layout_width="match_parent"
-    android:paddingStart="10dp"
-    android:paddingEnd="10dp"
-    android:background="@drawable/animate"
-    android:id="@+id/parentLoginLayout"
-    android:fitsSystemWindows="true"
-    >
 
-
-    <TextView
-        android:id="@+id/loginTitle"
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/parentLoginLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/log_in"
-        android:textStyle="bold"
-        android:gravity="center"
-        android:textSize="40sp"
-        android:layout_marginTop="70dp"
-        android:layout_marginBottom="40dp"
-        android:textColor="@color/color_white"
-
-        />
+        android:background="@drawable/animate"
+        android:fitsSystemWindows="true"
+        android:paddingStart="10dp"
+        android:paddingEnd="10dp">
 
 
-    <RelativeLayout
-        android:id="@+id/userDetailsContainer"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/loginTitle"
-        >
-
-
-
-        <android.support.design.widget.TextInputLayout
-            android:id="@+id/usernameWrapper"
+        <TextView
+            android:id="@+id/loginTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_marginBottom="15dp"
-            android:paddingBottom="17dp"
-            android:paddingTop="5dp"
-            android:background="@drawable/round_edit_text"
-            android:layout_marginRight="10dp">
+            android:layout_marginTop="70dp"
+            android:layout_marginBottom="40dp"
+            android:gravity="center"
+            android:text="@string/log_in"
+            android:textColor="@color/color_white"
+            android:textSize="40sp"
+            android:textStyle="bold"
 
-            <android.support.design.widget.TextInputEditText
-                android:id="@+id/userName"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="textEmailAddress"
-                android:background="@null"
-                android:paddingStart="10dp"
-                android:paddingEnd="10dp"
-                android:paddingTop="5dp"
-                android:textSize="15sp"
-                android:hint="@string/email"/>
-
-        </android.support.design.widget.TextInputLayout>
+            />
 
 
-        <android.support.design.widget.TextInputLayout
-            android:id="@+id/passwordWrapper"
+        <RelativeLayout
+            android:id="@+id/userDetailsContainer"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingBottom="17dp"
-            android:paddingTop="5dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:background="@drawable/round_edit_text"
-            android:layout_below="@+id/usernameWrapper">
+            android:layout_below="@+id/loginTitle">
 
-            <android.support.design.widget.TextInputEditText
-                android:id="@+id/userPassword"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="textPassword"
-                android:layout_marginBottom="5dp"
-                android:background="@null"
-                android:paddingStart="10dp"
-                android:paddingEnd="10dp"
-                android:paddingTop="5dp"
-                android:textSize="15sp"
-                android:hint="@string/password"/>
 
-        </android.support.design.widget.TextInputLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/buttonContainer"
-            android:layout_below="@+id/passwordWrapper"
-            android:orientation="vertical">
-
-            <Button
-                android:id="@+id/userLoginButton"
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/usernameWrapper"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
-                android:layout_marginTop="40dp"
-                android:layout_marginBottom="40dp"
-                android:padding="10dp"
-                android:background="@drawable/round_button"
-                android:textStyle="bold"
-                android:text="@string/login"/>
+                android:layout_marginBottom="15dp"
+                android:background="@drawable/round_edit_text"
+                android:paddingTop="5dp"
+                android:paddingBottom="17dp">
 
-            <TextView
+                <android.support.design.widget.TextInputEditText
+                    android:id="@+id/userName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@null"
+                    android:hint="@string/email"
+                    android:inputType="textEmailAddress"
+                    android:paddingStart="10dp"
+                    android:paddingTop="5dp"
+                    android:paddingEnd="10dp"
+                    android:textSize="15sp" />
+
+            </android.support.design.widget.TextInputLayout>
+
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/passwordWrapper"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/new_to_limelight"
-                android:layout_marginStart="20dp"
-                android:layout_marginEnd="20dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginBottom="10dp"
-                android:gravity="center"
-                android:textColor="@color/color_white"
-                android:textSize="17sp"
-                />
+                android:layout_below="@+id/usernameWrapper"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:background="@drawable/round_edit_text"
+                android:paddingTop="5dp"
+                android:paddingBottom="17dp">
 
-            <Button
-                android:id="@+id/registerBtn"
-                android:layout_marginTop="20dp"
+                <android.support.design.widget.TextInputEditText
+                    android:id="@+id/userPassword"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:background="@null"
+                    android:hint="@string/password"
+                    android:inputType="textPassword"
+                    android:paddingStart="10dp"
+                    android:paddingTop="5dp"
+                    android:paddingEnd="10dp"
+                    android:textSize="15sp" />
+
+            </android.support.design.widget.TextInputLayout>
+
+            <LinearLayout
+                android:id="@+id/buttonContainer"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:padding="10dp"
-                android:background="@drawable/round_button"
-                android:textStyle="bold"
-                android:text="@string/register"/>
-        </LinearLayout>
+                android:layout_below="@+id/passwordWrapper"
+                android:orientation="vertical">
+
+                <Button
+                    android:id="@+id/userLoginButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="40dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginBottom="40dp"
+                    android:background="@drawable/round_button"
+                    android:padding="10dp"
+                    android:text="@string/login"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginEnd="20dp"
+                    android:layout_marginBottom="10dp"
+                    android:gravity="center"
+                    android:text="@string/new_to_limelight"
+                    android:textColor="@color/color_white"
+                    android:textSize="17sp" />
+
+                <Button
+                    android:id="@+id/registerBtn"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:layout_marginTop="20dp"
+                    android:background="@drawable/round_button"
+                    android:padding="10dp"
+                    android:text="@string/register"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+        </RelativeLayout>
 
     </RelativeLayout>
-
-</RelativeLayout>
 </ScrollView>
 
 

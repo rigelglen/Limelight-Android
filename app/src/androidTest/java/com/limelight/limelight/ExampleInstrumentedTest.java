@@ -1,4 +1,4 @@
-package com.example.limelight;
+package com.limelight.limelight;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;

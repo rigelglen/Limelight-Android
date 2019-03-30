@@ -1,24 +1,19 @@
-package com.example.limelight;
+package com.limelight.limelight.activities;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.graphics.Color;
 import android.graphics.drawable.AnimationDrawable;
-import android.os.Build;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.RelativeLayout;
 
-import static android.view.View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN;
+import com.limelight.limelight.R;
 
 public class LoginActivity extends AppCompatActivity {
-    private RelativeLayout relativeLayout;
     private AnimationDrawable animationDrawable;
-    private Button registerBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,7 +22,7 @@ public class LoginActivity extends AppCompatActivity {
         Window w = getWindow();
         w.setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
 
-        relativeLayout =findViewById(R.id.parentLoginLayout);
+        RelativeLayout relativeLayout = findViewById(R.id.parentLoginLayout);
         animationDrawable = (AnimationDrawable) relativeLayout.getBackground();
 
         // setting enter fade animation duration to 5 seconds
@@ -38,14 +33,10 @@ public class LoginActivity extends AppCompatActivity {
 
         //End of animation code
 
-        registerBtn=findViewById(R.id.registerBtn);
-        registerBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i = new Intent(LoginActivity.this, RegisterActivity.class);
-                startActivity(i);
-
-            }
+        Button registerBtn = findViewById(R.id.registerBtn);
+        registerBtn.setOnClickListener(v -> {
+            Intent i = new Intent(LoginActivity.this, RegisterActivity.class);
+            startActivity(i);
         });
 
 

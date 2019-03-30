@@ -1,4 +1,4 @@
-package com.example.limelight;
+package com.limelight.limelight;
 
 import org.junit.Test;
 

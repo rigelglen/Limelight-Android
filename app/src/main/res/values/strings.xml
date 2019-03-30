@@ -1,6 +1,5 @@
 <resources>
     <string name="app_name">Limelight</string>
-    <string name="username">Username</string>
     <string name="password">Password</string>
     <string name="login">LOGIN</string>
     <string name="register">REGISTER</string>
@@ -11,4 +10,6 @@
     <string name="email">Email</string>
     <string name="register_lowercase">Register</string>
     <string name="confirm_password">Confirm Password</string>
+    <string name="splash_image_desc">Limelight Logo</string>
+    <string name="back_button_desc">Back Button</string>
 </resources>
