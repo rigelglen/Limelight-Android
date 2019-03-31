@@ -42,7 +42,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
-                android:layout_marginBottom="15dp"
+                android:layout_marginBottom="3dp"
                 android:background="@drawable/round_edit_text"
                 android:paddingTop="5dp"
                 android:paddingBottom="17dp">
@@ -61,14 +61,28 @@
 
             </android.support.design.widget.TextInputLayout>
 
+            <TextView
+                android:id="@+id/usernameErrorText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/usernameWrapper"
+                android:textColor="@color/color_white"
+                android:layout_marginLeft="11dp"
+                android:layout_marginRight="10dp"
+                android:textSize="14sp"
+                android:text="@string/enter_valid_pass"
+                />
+
 
             <android.support.design.widget.TextInputLayout
                 android:id="@+id/passwordWrapper"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/usernameWrapper"
+                android:layout_below="@+id/usernameErrorText"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
+                android:layout_marginBottom="3dp"
+                android:layout_marginTop="12dp"
                 android:background="@drawable/round_edit_text"
                 android:paddingTop="5dp"
                 android:paddingBottom="17dp">
@@ -88,11 +102,23 @@
 
             </android.support.design.widget.TextInputLayout>
 
+            <TextView
+                android:id="@+id/passwordErrorText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/passwordWrapper"
+                android:textColor="@color/color_white"
+                android:layout_marginLeft="11dp"
+                android:layout_marginRight="10dp"
+                android:textSize="14sp"
+                android:text="@string/enter_valid_email"
+                />
+
             <LinearLayout
                 android:id="@+id/buttonContainer"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/passwordWrapper"
+                android:layout_below="@+id/passwordErrorText"
                 android:orientation="vertical">
 
                 <Button
@@ -100,7 +126,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
-                    android:layout_marginTop="40dp"
+                    android:layout_marginTop="37dp"
                     android:layout_marginRight="10dp"
                     android:layout_marginBottom="40dp"
                     android:background="@drawable/round_button"
