@@ -32,6 +32,11 @@ dependencies {
     implementation 'com.squareup.retrofit2:converter-gson:2.4.0'
     implementation 'com.squareup.okhttp3:logging-interceptor:3.14.0'
     implementation 'br.com.simplepass:loading-button-android:2.1.0'
+
+    implementation 'com.github.f0ris.sweetalert:library:1.5.6'
+    implementation 'com.aurelhubert:ahbottomnavigation:2.3.4'
+
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0-beta01'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test:runner:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.1'

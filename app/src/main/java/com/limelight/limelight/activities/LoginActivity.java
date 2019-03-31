@@ -9,6 +9,8 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.drawable.AnimationDrawable;
 import android.graphics.drawable.Drawable;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -19,6 +21,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -37,6 +40,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 import br.com.simplepass.loadingbutton.customViews.CircularProgressButton;
+import cn.pedant.SweetAlert.SweetAlertDialog;
 import kotlin.Unit;
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
@@ -77,6 +81,9 @@ public class LoginActivity extends AppCompatActivity {
         animationDrawable.setExitFadeDuration(4000);
 
         //End of animation code
+
+        //checking if internet connection
+
 
         Button registerBtn = findViewById(R.id.registerBtn);
         registerBtn.setOnClickListener(v -> {
@@ -136,7 +143,11 @@ public class LoginActivity extends AppCompatActivity {
                                 ErrorModel mErrorModel;
                                 try {
                                     mErrorModel = gson.fromJson(response.errorBody().string(), ErrorModel.class);
-                                    Toast.makeText(getApplicationContext(), mErrorModel.getMessage(), Toast.LENGTH_LONG).show();
+                                    //Toast.makeText(getApplicationContext(), mErrorModel.getMessage(), Toast.LENGTH_LONG).show();
+                                    new SweetAlertDialog(LoginActivity.this, SweetAlertDialog.ERROR_TYPE)
+                                            .setTitleText("Error")
+                                            .setContentText(mErrorModel.getMessage())
+                                            .show();
                                 } catch (IOException e) {
                                     Toast.makeText(getApplicationContext(), "An error occurred", Toast.LENGTH_LONG).show();
                                 }
@@ -154,7 +165,11 @@ public class LoginActivity extends AppCompatActivity {
                             userLoginButton.setEnabled(true);
                             Log.i("abc", "ERROR");
                             Log.i("cdf", t.toString());
-                            Toast.makeText(getApplicationContext(), "No internet connection.", Toast.LENGTH_SHORT).show();
+
+                            SweetAlertDialog pDialog=new SweetAlertDialog(LoginActivity.this, SweetAlertDialog.ERROR_TYPE)
+                                    .setTitleText("Error")
+                                    .setContentText("No internet connection");
+                            pDialog.show();
                         }
 
                     });
@@ -188,6 +203,16 @@ public class LoginActivity extends AppCompatActivity {
             return false;
         return pat.matcher(email).matches();
     }
+
+//    public boolean isConnected(Context context) {
+//        ConnectivityManager connectivityManager
+//                = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+//        if (connectivityManager != null) {
+//            NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
+//            return activeNetworkInfo != null && activeNetworkInfo.isConnected();
+//        }
+//        return false;
+//    }
 
     @Override
     public void onBackPressed() {

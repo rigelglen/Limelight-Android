@@ -16,4 +16,15 @@
     <string name="enter_valid_pass">Enter a valid password</string>
     <string name="pass_mismatch">The passwords do not match</string>
     <string name="pass_length_err">Password must contain 6 or more characters</string>
+
+    <string name="tab_1">For You</string>
+    <string name="tab_2">Headlines</string>
+    <string name="tab_3">Classify</string>
+    <string name="tab_4">Following</string>
+
+    <string name="color_blue">#2196F3</string>
+    <string name="color_black">#000</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
