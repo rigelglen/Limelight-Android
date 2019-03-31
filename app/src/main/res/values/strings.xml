@@ -12,4 +12,8 @@
     <string name="confirm_password">Confirm Password</string>
     <string name="splash_image_desc">Limelight Logo</string>
     <string name="back_button_desc">Back Button</string>
+    <string name="enter_valid_email">Enter a valid email</string>
+    <string name="enter_valid_pass">Enter a valid password</string>
+    <string name="pass_mismatch">The passwords do not match</string>
+    <string name="pass_length_err">Password must contain 6 or more characters</string>
 </resources>

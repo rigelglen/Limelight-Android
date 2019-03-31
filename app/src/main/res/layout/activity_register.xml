@@ -54,7 +54,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
-                android:layout_marginBottom="15dp"
+                android:layout_marginBottom="3dp"
                 android:background="@drawable/round_edit_text"
                 android:paddingTop="5dp"
                 android:paddingBottom="17dp">
@@ -73,15 +73,28 @@
 
             </android.support.design.widget.TextInputLayout>
 
+            <TextView
+                android:id="@+id/usernameErrorText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/usernameWrapper"
+                android:textColor="@color/color_white"
+                android:layout_marginLeft="11dp"
+                android:layout_marginRight="10dp"
+                android:textSize="14sp"
+                android:text="@string/enter_valid_email"
+                />
+
 
             <android.support.design.widget.TextInputLayout
                 android:id="@+id/passwordWrapper"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/usernameWrapper"
+                android:layout_below="@+id/usernameErrorText"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:layout_marginBottom="15dp"
+                android:layout_marginTop="12dp"
                 android:background="@drawable/round_edit_text"
                 android:paddingTop="5dp"
                 android:paddingBottom="17dp">
@@ -127,17 +140,23 @@
 
             </android.support.design.widget.TextInputLayout>
 
-            <LinearLayout
-                android:id="@+id/buttonContainer"
+            <TextView
+                android:id="@+id/passwordErrorText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/confirmPasswordWrapper"
-                android:orientation="vertical">
+                android:layout_below="@id/confirmPasswordWrapper"
+                android:textColor="@color/color_white"
+                android:layout_marginLeft="11dp"
+                android:layout_marginRight="10dp"
+                android:textSize="14sp"
+                android:text="@string/enter_valid_pass"
+                />
 
                 <Button
                     android:id="@+id/userRegisterButton"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_below="@+id/passwordErrorText"
                     android:layout_marginLeft="10dp"
                     android:layout_marginTop="40dp"
                     android:layout_marginRight="10dp"
@@ -147,30 +166,7 @@
                     android:text="@string/register"
                     android:textStyle="bold" />
 
-                <!--<TextView-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:text="@string/already_have_account"-->
-                <!--android:layout_marginStart="20dp"-->
-                <!--android:layout_marginEnd="20dp"-->
-                <!--android:layout_marginTop="20dp"-->
-                <!--android:layout_marginBottom="10dp"-->
-                <!--android:gravity="center"-->
-                <!--android:textColor="@color/color_white"-->
-                <!--android:textSize="17sp"-->
-                <!--/>-->
 
-                <!--<Button-->
-                <!--android:id="@+id/userLoginBtn"-->
-                <!--android:layout_marginTop="20dp"-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:layout_margin="10dp"-->
-                <!--android:padding="10dp"-->
-                <!--android:background="@drawable/round_button"-->
-                <!--android:textStyle="bold"-->
-                <!--android:text="@string/login"/>-->
-            </LinearLayout>
 
         </RelativeLayout>
 
