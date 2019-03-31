@@ -123,7 +123,7 @@ public class LoginActivity extends AppCompatActivity {
                         @Override
                         public void onResponse(@NonNull Call<User> call, @NonNull Response<User> response) {
                             userLoginButton.setEnabled(true);
-                            userLoginButton.doneLoadingAnimation(Color.GREEN, getBitmapFromVectorDrawable(LoginActivity.this, R.drawable.ic_check));
+                            userLoginButton.revertAnimation(()->Unit.INSTANCE);
                             if (response.body() != null && response.isSuccessful()) {
                                 String token = response.body().getToken();
                                 Log.i("abc", token);
@@ -138,7 +138,6 @@ public class LoginActivity extends AppCompatActivity {
                                 finish();
 
                             } else if (response.errorBody() != null) {
-                                userLoginButton.revertAnimation(()->Unit.INSTANCE);
                                 Gson gson = new GsonBuilder().create();
                                 ErrorModel mErrorModel;
                                 try {
@@ -158,10 +157,9 @@ public class LoginActivity extends AppCompatActivity {
 
                         }
 
-
                         @Override
                         public void onFailure(@NonNull Call<User> call, @NonNull Throwable t) {
-                            userLoginButton.revertAnimation(()->Unit.INSTANCE);
+                            userLoginButton.revertAnimation(()-> Unit.INSTANCE);
                             userLoginButton.setEnabled(true);
                             Log.i("abc", "ERROR");
                             Log.i("cdf", t.toString());
@@ -218,18 +216,6 @@ public class LoginActivity extends AppCompatActivity {
     public void onBackPressed() {
         super.onBackPressed();
         finishAffinity();
-    }
-
-    public static Bitmap getBitmapFromVectorDrawable(Context context, int drawableId) {
-        Drawable drawable = ContextCompat.getDrawable(context, drawableId);
-        assert drawable != null;
-        Bitmap bitmap = Bitmap.createBitmap(drawable.getIntrinsicWidth(),
-                drawable.getIntrinsicHeight(), Bitmap.Config.ARGB_8888);
-        Canvas canvas = new Canvas(bitmap);
-        drawable.setBounds(0, 0, canvas.getWidth(), canvas.getHeight());
-        drawable.draw(canvas);
-
-        return bitmap;
     }
 
     @Override
