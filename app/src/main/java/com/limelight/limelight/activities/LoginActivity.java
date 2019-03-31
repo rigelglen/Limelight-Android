@@ -116,9 +116,8 @@ public class LoginActivity extends AppCompatActivity {
                         @Override
                         public void onResponse(@NonNull Call<User> call, @NonNull Response<User> response) {
                             userLoginButton.setEnabled(true);
-
+                            userLoginButton.revertAnimation(()->Unit.INSTANCE);
                             if (response.body() != null && response.isSuccessful()) {
-                                userLoginButton.revertAnimation(()->Unit.INSTANCE);
                                 String token = response.body().getToken();
                                 Log.i("abc", token);
                                 sharedPref = getSharedPreferences("limelight", Context.MODE_PRIVATE);
@@ -132,7 +131,6 @@ public class LoginActivity extends AppCompatActivity {
                                 finish();
 
                             } else if (response.errorBody() != null) {
-                                userLoginButton.revertAnimation(()->Unit.INSTANCE);
                                 Gson gson = new GsonBuilder().create();
                                 ErrorModel mErrorModel;
                                 try {

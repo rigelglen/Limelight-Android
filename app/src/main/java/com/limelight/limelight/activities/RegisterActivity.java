@@ -124,8 +124,8 @@ public class RegisterActivity extends AppCompatActivity {
 //                                    userRegisterButton.startMorphRevertAnimation();
 //                                    userRegisterButton.revertAnimation(()-> Unit.INSTANCE);
                                     userRegisterButton.setEnabled(true);
+                                    userRegisterButton.revertAnimation(()->Unit.INSTANCE);
                                     if (response.body() != null && response.isSuccessful()) {
-                                        userRegisterButton.doneLoadingAnimation(Color.GREEN, getBitmapFromVectorDrawable(RegisterActivity.this, R.drawable.ic_check));
                                         String token = response.body().getToken();
                                         Log.i("abc", token);
                                         sharedPref = getSharedPreferences("limelight", Context.MODE_PRIVATE);
@@ -139,7 +139,6 @@ public class RegisterActivity extends AppCompatActivity {
                                         finish();
 
                                     } else if (response.errorBody() != null) {
-                                        userRegisterButton.revertAnimation(()->Unit.INSTANCE);
                                         Gson gson = new GsonBuilder().create();
                                         ErrorModel mErrorModel;
                                         try {
@@ -203,19 +202,6 @@ public class RegisterActivity extends AppCompatActivity {
         if (email == null)
             return false;
         return pat.matcher(email).matches();
-    }
-
-
-    public static Bitmap getBitmapFromVectorDrawable(Context context, int drawableId) {
-        Drawable drawable = ContextCompat.getDrawable(context, drawableId);
-        assert drawable != null;
-        Bitmap bitmap = Bitmap.createBitmap(drawable.getIntrinsicWidth(),
-                drawable.getIntrinsicHeight(), Bitmap.Config.ARGB_8888);
-        Canvas canvas = new Canvas(bitmap);
-        drawable.setBounds(0, 0, canvas.getWidth(), canvas.getHeight());
-        drawable.draw(canvas);
-
-        return bitmap;
     }
 
     @Override
