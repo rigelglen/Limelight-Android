@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fillViewport="true">
@@ -23,8 +24,8 @@
             android:layout_marginTop="25dp"
             android:adjustViewBounds="true"
             android:background="@drawable/ic_back_chevron"
-            android:scaleType="fitCenter"
-            android:contentDescription="@string/back_button_desc" />
+            android:contentDescription="@string/back_button_desc"
+            android:scaleType="fitCenter" />
 
         <TextView
             android:id="@+id/registerTitle"
@@ -78,12 +79,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/usernameWrapper"
-                android:textColor="@color/color_white"
                 android:layout_marginStart="11dp"
                 android:layout_marginEnd="10dp"
-                android:textSize="14sp"
                 android:text="@string/enter_valid_email"
-                />
+                android:textColor="@color/color_white"
+                android:textSize="14sp" />
 
 
             <com.google.android.material.textfield.TextInputLayout
@@ -92,9 +92,9 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/usernameErrorText"
                 android:layout_marginLeft="10dp"
+                android:layout_marginTop="12dp"
                 android:layout_marginRight="10dp"
                 android:layout_marginBottom="15dp"
-                android:layout_marginTop="12dp"
                 android:background="@drawable/round_edit_text"
                 android:paddingTop="5dp"
                 android:paddingBottom="17dp">
@@ -143,28 +143,29 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/confirmPasswordWrapper"
-                android:textColor="@color/color_white"
                 android:layout_marginStart="11dp"
                 android:layout_marginEnd="10dp"
-                android:textSize="14sp"
                 android:text="@string/enter_valid_pass"
-                />
+                android:textColor="@color/color_white"
+                android:textSize="14sp" />
 
-                <br.com.simplepass.loadingbutton.customViews.CircularProgressButton
-                    android:id="@+id/userRegisterButton"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/passwordErrorText"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginTop="40dp"
-                    android:layout_marginRight="10dp"
-                    android:layout_marginBottom="40dp"
-                    android:background="@drawable/round_button"
-                    android:layout_centerHorizontal="true"
-                    android:padding="10dp"
-                    android:text="@string/register"
-                    android:textStyle="bold" />
-
+            <br.com.simplepass.loadingbutton.customViews.CircularProgressButton
+                android:id="@+id/userRegisterButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/passwordErrorText"
+                android:layout_centerHorizontal="true"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="40dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginBottom="40dp"
+                android:background="@drawable/round_button"
+                android:padding="10dp"
+                android:text="@string/register"
+                android:textStyle="bold"
+                app:finalCornerAngle="50dp"
+                app:initialCornerAngle="50dp"
+                app:spinning_bar_padding="5dp" />
 
 
         </RelativeLayout>

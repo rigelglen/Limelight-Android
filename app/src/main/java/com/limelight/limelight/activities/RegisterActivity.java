@@ -1,5 +1,6 @@
 package com.limelight.limelight.activities;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -19,13 +20,13 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.textfield.TextInputEditText;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import com.limelight.limelight.R;
 import com.limelight.limelight.core.RetrofitClient;
 import com.limelight.limelight.models.ErrorModel;
 import com.limelight.limelight.models.User;
 import com.limelight.limelight.network.Api;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 import java.io.IOException;
 import java.util.HashMap;
