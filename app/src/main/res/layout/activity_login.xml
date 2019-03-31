@@ -36,7 +36,7 @@
             android:layout_below="@+id/loginTitle">
 
 
-            <android.support.design.widget.TextInputLayout
+            <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/usernameWrapper"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -47,7 +47,7 @@
                 android:paddingTop="5dp"
                 android:paddingBottom="17dp">
 
-                <android.support.design.widget.TextInputEditText
+                <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/userName"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -59,7 +59,7 @@
                     android:paddingEnd="10dp"
                     android:textSize="15sp" />
 
-            </android.support.design.widget.TextInputLayout>
+            </com.google.android.material.textfield.TextInputLayout>
 
             <TextView
                 android:id="@+id/usernameErrorText"
@@ -67,14 +67,14 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/usernameWrapper"
                 android:textColor="@color/color_white"
-                android:layout_marginLeft="11dp"
-                android:layout_marginRight="10dp"
+                android:layout_marginStart="11dp"
+                android:layout_marginEnd="10dp"
                 android:textSize="14sp"
                 android:text="@string/enter_valid_pass"
                 />
 
 
-            <android.support.design.widget.TextInputLayout
+            <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/passwordWrapper"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -87,7 +87,7 @@
                 android:paddingTop="5dp"
                 android:paddingBottom="17dp">
 
-                <android.support.design.widget.TextInputEditText
+                <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/userPassword"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -100,7 +100,7 @@
                     android:paddingEnd="10dp"
                     android:textSize="15sp" />
 
-            </android.support.design.widget.TextInputLayout>
+            </com.google.android.material.textfield.TextInputLayout>
 
             <TextView
                 android:id="@+id/passwordErrorText"
@@ -108,8 +108,8 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/passwordWrapper"
                 android:textColor="@color/color_white"
-                android:layout_marginLeft="11dp"
-                android:layout_marginRight="10dp"
+                android:layout_marginStart="11dp"
+                android:layout_marginEnd="10dp"
                 android:textSize="14sp"
                 android:text="@string/enter_valid_email"
                 />
@@ -119,9 +119,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/passwordErrorText"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:gravity="center">
 
-                <Button
+                <br.com.simplepass.loadingbutton.customViews.CircularProgressButton
                     android:id="@+id/userLoginButton"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -156,6 +157,7 @@
                     android:padding="10dp"
                     android:text="@string/register"
                     android:textStyle="bold" />
+
             </LinearLayout>
 
         </RelativeLayout>

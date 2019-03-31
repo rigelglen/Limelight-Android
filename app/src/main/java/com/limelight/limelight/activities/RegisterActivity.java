@@ -1,49 +1,50 @@
 package com.limelight.limelight.activities;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.drawable.AnimationDrawable;
-import android.support.annotation.NonNull;
-import android.support.design.widget.TextInputEditText;
-import android.support.v7.app.AppCompatActivity;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.material.textfield.TextInputEditText;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.limelight.limelight.R;
+import com.limelight.limelight.core.RetrofitClient;
 import com.limelight.limelight.models.ErrorModel;
 import com.limelight.limelight.models.User;
 import com.limelight.limelight.network.Api;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.regex.Pattern;
 
-import okhttp3.OkHttpClient;
-import okhttp3.logging.HttpLoggingInterceptor;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
+import br.com.simplepass.loadingbutton.customViews.CircularProgressButton;
+import kotlin.Unit;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RegisterActivity extends AppCompatActivity {
     private AnimationDrawable animationDrawable;
-    private Button userRegisterButton;
+    private CircularProgressButton userRegisterButton;
     private SharedPreferences sharedPref;
     private SharedPreferences.Editor editor;
-    public static final String BASE_URL = "http://192.168.43.200:4000";
     private Api api;
 
     @Override
@@ -55,8 +56,6 @@ public class RegisterActivity extends AppCompatActivity {
         TextView passwordErrorText = findViewById(R.id.passwordErrorText);
         usernameErrorText.setVisibility(View.GONE);
         passwordErrorText.setVisibility(View.GONE);
-
-
 
         Window w = getWindow();
         w.setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
@@ -82,39 +81,31 @@ public class RegisterActivity extends AppCompatActivity {
             finish();
         });
 
-
-
-        HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
-        logging.setLevel(HttpLoggingInterceptor.Level.BODY);
-        OkHttpClient.Builder httpClient = new OkHttpClient.Builder();
-        httpClient.addInterceptor(logging);
-
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create(new GsonBuilder().create()))
-                .client(httpClient.build()).build();
-
-        api = retrofit.create(Api.class);
-
+        api = RetrofitClient.getInstance().getApiService();
 
         userRegisterButton = findViewById(R.id.userRegisterButton);
 
-
         userRegisterButton.setOnClickListener(v -> {
-
             usernameErrorText.setVisibility(View.GONE);
             passwordErrorText.setVisibility(View.GONE);
             //validation of user credentials
             TextInputEditText userName = findViewById(R.id.userName);
             TextInputEditText userPassword = findViewById(R.id.userPassword);
             TextInputEditText confirmUserPassword = findViewById(R.id.confirmUserPassword);
-
-            String user = userName.getText().toString().trim();
+            String user=null;
+            if(userName.getText()!=null)
+                user = userName.getText().toString().trim();
             HashMap<String, String> map = new HashMap<>();
 
             if (user != null && !user.isEmpty() && isValid(user)) {
-                String pass = userPassword.getText().toString();
-                String pass2 = confirmUserPassword.getText().toString();
+                String pass = null;
+                String pass2 = null;
+                if(userPassword.getText()!=null)
+                    pass = userPassword.getText().toString();
+
+                if(confirmUserPassword.getText()!=null)
+                    pass2 = confirmUserPassword.getText().toString();
+
                 if (pass != null && !pass.isEmpty() && pass2 != null && !pass2.isEmpty()) {
                     if (pass.equals(pass2)) {
                         if (pass.length() >=6) {
@@ -124,23 +115,30 @@ public class RegisterActivity extends AppCompatActivity {
                             userRegisterButton.setEnabled(false);
 
                             Call<User> call = api.registerUser(map);
+//                            userRegisterButton.startMorphAnimation();
+                            userRegisterButton.startAnimation(()-> Unit.INSTANCE);
                             call.enqueue(new Callback<User>() {
                                 @Override
                                 public void onResponse(@NonNull Call<User> call, @NonNull Response<User> response) {
+//                                    userRegisterButton.startMorphRevertAnimation();
+//                                    userRegisterButton.revertAnimation(()-> Unit.INSTANCE);
                                     userRegisterButton.setEnabled(true);
                                     if (response.body() != null && response.isSuccessful()) {
+                                        userRegisterButton.doneLoadingAnimation(Color.GREEN, getBitmapFromVectorDrawable(RegisterActivity.this, R.drawable.ic_check));
                                         String token = response.body().getToken();
                                         Log.i("abc", token);
-                                        sharedPref = getPreferences(Context.MODE_PRIVATE);
+                                        sharedPref = getSharedPreferences("limelight", Context.MODE_PRIVATE);
                                         editor = sharedPref.edit();
                                         editor.putString("token", token);
                                         editor.apply();
                                         //successful Registration hence go to Main activity
                                         Intent i = new Intent(RegisterActivity.this, MainActivity.class);
+                                        i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                                         startActivity(i);
                                         finish();
 
                                     } else if (response.errorBody() != null) {
+                                        userRegisterButton.revertAnimation(()->Unit.INSTANCE);
                                         Gson gson = new GsonBuilder().create();
                                         ErrorModel mErrorModel;
                                         try {
@@ -159,6 +157,7 @@ public class RegisterActivity extends AppCompatActivity {
 
                                 @Override
                                 public void onFailure(@NonNull Call<User> call, @NonNull Throwable t) {
+                                    userRegisterButton.revertAnimation(()-> Unit.INSTANCE);
                                     userRegisterButton.setEnabled(true);
                                     Log.i("abc", "ERROR");
                                     Log.i("cdf", t.toString());
@@ -205,15 +204,17 @@ public class RegisterActivity extends AppCompatActivity {
         return pat.matcher(email).matches();
     }
 
-    public static void setWindowFlag(Activity activity, final int bits, boolean on) {
-        Window win = activity.getWindow();
-        WindowManager.LayoutParams winParams = win.getAttributes();
-        if (on) {
-            winParams.flags |= bits;
-        } else {
-            winParams.flags &= ~bits;
-        }
-        win.setAttributes(winParams);
+
+    public static Bitmap getBitmapFromVectorDrawable(Context context, int drawableId) {
+        Drawable drawable = ContextCompat.getDrawable(context, drawableId);
+        assert drawable != null;
+        Bitmap bitmap = Bitmap.createBitmap(drawable.getIntrinsicWidth(),
+                drawable.getIntrinsicHeight(), Bitmap.Config.ARGB_8888);
+        Canvas canvas = new Canvas(bitmap);
+        drawable.setBounds(0, 0, canvas.getWidth(), canvas.getHeight());
+        drawable.draw(canvas);
+
+        return bitmap;
     }
 
     @Override
