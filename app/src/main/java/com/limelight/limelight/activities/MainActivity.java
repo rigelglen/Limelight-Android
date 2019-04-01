@@ -50,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
         bottomNavigation.setTitleState(AHBottomNavigation.TitleState.ALWAYS_SHOW);
 
         // Set current item programmatically
-        bottomNavigation.setCurrentItem(0);
+
 
 
         bottomNavigation.setOnTabSelectedListener(new AHBottomNavigation.OnTabSelectedListener() {
@@ -79,7 +79,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
+        bottomNavigation.setCurrentItem(0);
 
     }
 
