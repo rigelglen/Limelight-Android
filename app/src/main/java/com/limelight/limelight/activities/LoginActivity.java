@@ -16,7 +16,9 @@ import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -98,7 +100,6 @@ public class LoginActivity extends AppCompatActivity {
         userLoginButton.setOnClickListener(v -> {
             usernameErrorText.setVisibility(View.GONE);
             passwordErrorText.setVisibility(View.GONE);
-
             TextInputEditText userName = findViewById(R.id.userName);
             TextInputEditText userPassword = findViewById(R.id.userPassword);
             String user = null;
@@ -116,13 +117,15 @@ public class LoginActivity extends AppCompatActivity {
                     map.put("email", user);
                     map.put("password", pass);
                     userLoginButton.setEnabled(false);
-
+                    registerBtn.setEnabled(false);
                     Call<User> call = api.authenticateUser(map);
+                    hideKeyboard(LoginActivity.this);
                     userLoginButton.startAnimation(()-> Unit.INSTANCE);
                     call.enqueue(new Callback<User>() {
                         @Override
                         public void onResponse(@NonNull Call<User> call, @NonNull Response<User> response) {
                             userLoginButton.setEnabled(true);
+                            registerBtn.setEnabled(true);
                             userLoginButton.revertAnimation(()->Unit.INSTANCE);
                             if (response.body() != null && response.isSuccessful()) {
                                 String token = response.body().getToken();
@@ -161,6 +164,7 @@ public class LoginActivity extends AppCompatActivity {
                         public void onFailure(@NonNull Call<User> call, @NonNull Throwable t) {
                             userLoginButton.revertAnimation(()-> Unit.INSTANCE);
                             userLoginButton.setEnabled(true);
+                            registerBtn.setEnabled(true);
                             Log.i("abc", "ERROR");
                             Log.i("cdf", t.toString());
 
@@ -200,6 +204,15 @@ public class LoginActivity extends AppCompatActivity {
         if (email == null)
             return false;
         return pat.matcher(email).matches();
+    }
+
+    public static void hideKeyboard( Activity activity ) {
+        InputMethodManager imm = (InputMethodManager)activity.getSystemService( Context.INPUT_METHOD_SERVICE );
+        View f = activity.getCurrentFocus();
+        if( null != f && null != f.getWindowToken() && EditText.class.isAssignableFrom( f.getClass() ) )
+            imm.hideSoftInputFromWindow( f.getWindowToken(), 0 );
+        else
+            activity.getWindow().setSoftInputMode( WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN );
     }
 
 //    public boolean isConnected(Context context) {

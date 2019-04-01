@@ -14,6 +14,8 @@ import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -117,6 +119,7 @@ public class RegisterActivity extends AppCompatActivity {
 
                             Call<User> call = api.registerUser(map);
 //                            userRegisterButton.startMorphAnimation();
+                            hideKeyboard(RegisterActivity.this);
                             userRegisterButton.startAnimation(()-> Unit.INSTANCE);
                             call.enqueue(new Callback<User>() {
                                 @Override
@@ -202,6 +205,15 @@ public class RegisterActivity extends AppCompatActivity {
         if (email == null)
             return false;
         return pat.matcher(email).matches();
+    }
+
+    public static void hideKeyboard( Activity activity ) {
+        InputMethodManager imm = (InputMethodManager)activity.getSystemService( Context.INPUT_METHOD_SERVICE );
+        View f = activity.getCurrentFocus();
+        if( null != f && null != f.getWindowToken() && EditText.class.isAssignableFrom( f.getClass() ) )
+            imm.hideSoftInputFromWindow( f.getWindowToken(), 0 );
+        else
+            activity.getWindow().setSoftInputMode( WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN );
     }
 
     @Override
