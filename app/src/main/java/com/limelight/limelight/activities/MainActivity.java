@@ -1,23 +1,48 @@
 package com.limelight.limelight.activities;
 
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
+import android.widget.Toast;
 
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigation;
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigationItem;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.limelight.limelight.core.RetrofitClient;
 import com.limelight.limelight.fragments.ClassifyFragment;
 import com.limelight.limelight.fragments.FeedFragment;
 import com.limelight.limelight.R;
 import com.limelight.limelight.fragments.FollowFragment;
 import com.limelight.limelight.fragments.HeadlineFragment;
+import com.limelight.limelight.models.Article;
+import com.limelight.limelight.models.ErrorModel;
+import com.limelight.limelight.network.Api;
 
+import java.io.IOException;
+import java.util.ArrayList;
+
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import cn.pedant.SweetAlert.SweetAlertDialog;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity {
 
     private AHBottomNavigation bottomNavigation;
     Fragment fragment;
+    private SharedPreferences sharedPref;
+    private SharedPreferences.Editor editor;
+
+
+
+    ArrayList<Article> feedArticles = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,7 +75,6 @@ public class MainActivity extends AppCompatActivity {
         bottomNavigation.setTitleState(AHBottomNavigation.TitleState.ALWAYS_SHOW);
 
         // Set current item programmatically
-
 
 
         bottomNavigation.setOnTabSelectedListener(new AHBottomNavigation.OnTabSelectedListener() {
@@ -94,4 +118,6 @@ public class MainActivity extends AppCompatActivity {
         }
         return false;
     }
+
+
 }

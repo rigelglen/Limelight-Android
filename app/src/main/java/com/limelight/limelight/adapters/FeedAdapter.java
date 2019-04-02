@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import com.limelight.limelight.R;
 import com.limelight.limelight.models.Article;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -38,8 +39,12 @@ public class FeedAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
 
         final MyViewHolder viewHolder = (MyViewHolder) holder;
-        viewHolder.articleTitle.setText(feedArticles.get(position).getTitle());
-
+        if(feedArticles.get(position).getTitle()!=null)
+            viewHolder.articleTitle.setText(feedArticles.get(position).getTitle());
+        if(feedArticles.get(position).getSource()!=null)
+            viewHolder.articleSource.setText(feedArticles.get(position).getSource());
+        if(feedArticles.get(position).getImage()!=null)
+            Picasso.get().load(feedArticles.get(position).getImage()).placeholder(R.drawable.app_logo).into(viewHolder.articleThumb);
 
         //click to read article
     }
@@ -53,12 +58,15 @@ public class FeedAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
         // init the item view's
-        TextView articleTitle;
+        TextView articleTitle, articleSource;
+        ImageView articleThumb;
 
 
         public MyViewHolder(View itemView) {
             super(itemView);
             articleTitle = itemView.findViewById(R.id.articleTitle);
+            articleSource = itemView.findViewById(R.id.articleSource);
+            articleThumb = itemView.findViewById(R.id.articleThumb);
 
         }
     }
