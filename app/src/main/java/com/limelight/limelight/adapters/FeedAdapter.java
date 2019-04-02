@@ -11,6 +11,7 @@ import com.limelight.limelight.R;
 import com.limelight.limelight.models.Article;
 import com.squareup.picasso.Picasso;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 import androidx.annotation.NonNull;
@@ -52,6 +53,16 @@ public class FeedAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     @Override
     public int getItemCount() {
         return feedArticles.size();
+    }
+
+    public void clear(){
+        feedArticles.clear();
+        notifyDataSetChanged();
+    }
+
+    public void addAll(ArrayList<Article> list) {
+        feedArticles.addAll(list);
+        notifyDataSetChanged();
     }
 
 
