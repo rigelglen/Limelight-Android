@@ -8,22 +8,15 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import com.limelight.limelight.R;
 import com.limelight.limelight.activities.LoginActivity;
 import com.limelight.limelight.activities.ViewArticleActivity;
 import com.limelight.limelight.adapters.FeedAdapter;
-import com.limelight.limelight.core.RetrofitClient;
 import com.limelight.limelight.listeners.RecyclerViewClickListener;
 import com.limelight.limelight.models.Article;
-import com.limelight.limelight.models.ErrorModel;
-import com.limelight.limelight.network.Api;
 import com.limelight.limelight.viewmodel.FeedViewModel;
 
-import java.io.IOException;
 import java.util.ArrayList;
 
 import androidx.annotation.NonNull;
@@ -33,10 +26,6 @@ import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
-import cn.pedant.SweetAlert.SweetAlertDialog;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 public class FeedFragment extends Fragment {
     public static final String PARAM = "feed_param";

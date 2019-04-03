@@ -6,7 +6,7 @@
     >
     <item
         android:id="@+id/menu_analyze"
-        android:icon="@drawable/app_logo"
+        android:icon="@drawable/vector_logo"
         android:orderInCategory="100"
         app:showAsAction="ifRoom"
         android:title="@string/analyze"/>

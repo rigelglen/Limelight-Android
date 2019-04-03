@@ -10,6 +10,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:id="@+id/classifyHeader"
         android:paddingTop="50dp">
 
         <TextView
@@ -27,11 +28,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/classifyTitle"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:hint="@string/enter_url"
-            app:boxStrokeColor="@color/black"
-            android:textColorHint="@color/black"
+            app:boxStrokeColor="@color/colorPrimary"
             app:boxStrokeWidth="3dp"
+            android:textColorHint="@color/black"
             android:layout_margin="20dp"
+            android:id="@+id/classifyInputLayout"
+
             >
 
             <com.google.android.material.textfield.TextInputEditText
@@ -39,9 +43,25 @@
                 android:layout_height="match_parent"
                 android:padding="20dp"
                 android:textColorHint="@color/black"
+                android:maxLines="1"
+                android:inputType="textUri"
                 />
 
         </com.google.android.material.textfield.TextInputLayout>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/classifyInputLayout"
+            android:gravity="center"
+            android:layout_centerHorizontal="true"
+            android:text="@string/analyze"
+            android:textSize="16sp"
+            android:padding="15dp"
+            style="@style/Widget.MaterialComponents.Button.Icon"
+            app:icon="@drawable/ic_analyze"
+            />
+
 
     </RelativeLayout>
 

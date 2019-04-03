@@ -36,11 +36,8 @@ public class ViewArticleActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 
 
-
-
-
         Intent intent = getIntent();
-        url=intent.getExtras().getString("url");
+        url=intent.getExtras().getString("url", "");
         mySwipeRefreshLayout = findViewById(R.id.swipeContainer);
         webview = findViewById(R.id.webview);
         webview.setWebViewClient(new WebViewClient() {
@@ -62,25 +59,20 @@ public class ViewArticleActivity extends AppCompatActivity {
         });
 
 
-
-        webview.getSettings().setJavaScriptEnabled(true);
+        webview.getSettings().setJavaScriptEnabled(false);
         webview.getSettings().setBuiltInZoomControls(true);
         webview.getSettings().setDisplayZoomControls(false);
 
 
-        if(!url.equals("") || url!=null){
+        if(!url.equals("")){
             //open the article in webview
-            progressDialog = new ProgressDialog(ViewArticleActivity.this);
+            progressDialog = new ProgressDialog(ViewArticleActivity.this, R.style.AlertDialogStyle);
             progressDialog.setMessage("Loading...");
             progressDialog.setCancelable(false);
             progressDialog.show();
-
-
-
-
             webview.loadUrl("https://mercury.postlight.com/amp?url="+url);
         } else {
-            Toast.makeText(this, "An Error Occured", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "An Error Occurred", Toast.LENGTH_SHORT).show();
         }
 
         mySwipeRefreshLayout.setOnRefreshListener(
@@ -102,6 +94,7 @@ public class ViewArticleActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+
         switch (item.getItemId()) {
             case R.id.menu_analyze:
                 Toast.makeText(this, "menu_analyze", Toast.LENGTH_SHORT).show();
@@ -128,9 +121,8 @@ public class ViewArticleActivity extends AppCompatActivity {
                 }
                 return true;
             default:
-                break;
+                return super.onOptionsItemSelected(item);
         }
-        return super.onOptionsItemSelected(item);
     }
 
     @Override

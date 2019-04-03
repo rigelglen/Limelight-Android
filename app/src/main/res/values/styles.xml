@@ -17,5 +17,11 @@
         <item name="android:src">@drawable/ic_option</item>
     </style>
 
+    <style name="AlertDialogStyle" parent="Theme.MaterialComponents.Dialog.Alert">
+        <item name="colorAccent">@color/colorPrimary</item>
+        <item name="android:textColorPrimary">@color/black</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+
 
 </resources>
