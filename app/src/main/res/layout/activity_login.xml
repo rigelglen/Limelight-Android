@@ -46,13 +46,17 @@
                 android:layout_marginBottom="3dp"
                 android:background="@drawable/round_edit_text"
                 android:paddingTop="5dp"
-                android:paddingBottom="17dp">
+                android:paddingBottom="12dp"
+                app:boxBackgroundMode="none"
+                style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.Dense"
+
+                >
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/userName"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@null"
+                    android:background="@android:color/transparent"
                     android:hint="@string/email"
                     android:inputType="textEmailAddress"
                     android:paddingStart="10dp"
@@ -86,13 +90,15 @@
                 android:layout_marginTop="12dp"
                 android:background="@drawable/round_edit_text"
                 android:paddingTop="5dp"
-                android:paddingBottom="17dp">
+                android:paddingBottom="12dp"
+                style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.Dense"
+                app:boxBackgroundMode="none">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/userPassword"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@null"
+                    android:background="@android:color/transparent"
                     android:hint="@string/password"
                     android:inputType="textPassword"
                     android:paddingStart="10dp"
@@ -156,10 +162,12 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
                     android:layout_marginTop="20dp"
-                    android:background="@drawable/round_button"
                     android:padding="10dp"
                     android:text="@string/register"
-                    android:textStyle="bold" />
+                    app:backgroundTint="@color/button_color"
+                    app:cornerRadius="50dp"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"/>
 
             </LinearLayout>
 

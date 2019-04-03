@@ -1,14 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    >
+    android:background="@color/color_white"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:fitsSystemWindows="true">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="wrap_content"
+        android:paddingTop="50dp">
 
-</FrameLayout>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/classify_article"
+            android:gravity="center|center_vertical"
+            android:textSize="30sp"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:id="@+id/classifyTitle"
+            />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/classifyTitle"
+            android:hint="@string/enter_url"
+            app:boxStrokeColor="@color/black"
+            android:textColorHint="@color/black"
+            app:boxStrokeWidth="3dp"
+            android:layout_margin="20dp"
+            >
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="20dp"
+                android:textColorHint="@color/black"
+                />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+    </RelativeLayout>
+
+</RelativeLayout>
