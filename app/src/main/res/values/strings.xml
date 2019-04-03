@@ -25,9 +25,13 @@
     <string name="color_blue">#2196F3</string>
     <string name="color_black">#000</string>
 
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="article_thumbnail">Article Thumbnail</string>
     <string name="classify_article">CLASSIFY ARTICLE</string>
     <string name="enter_url">Enter URL</string>
+    <string name="view_in_browser">View in Browser</string>
+    <string name="share">Share</string>
+    <string name="analyze">Analyze</string>
 </resources>
