@@ -50,6 +50,9 @@ public class ViewArticleActivity extends AppCompatActivity {
                 if (progressDialog.isShowing()) {
                     progressDialog.dismiss();
                 }
+                if (mySwipeRefreshLayout.isRefreshing()) {
+                    mySwipeRefreshLayout.setRefreshing(false);
+                }
             }
         });
 
