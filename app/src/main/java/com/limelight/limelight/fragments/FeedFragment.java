@@ -14,9 +14,10 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.limelight.limelight.R;
 import com.limelight.limelight.activities.LoginActivity;
-import com.limelight.limelight.activities.MainActivity;
+import com.limelight.limelight.activities.ViewArticleActivity;
 import com.limelight.limelight.adapters.FeedAdapter;
 import com.limelight.limelight.core.RetrofitClient;
+import com.limelight.limelight.listeners.RecyclerViewClickListener;
 import com.limelight.limelight.models.Article;
 import com.limelight.limelight.models.ErrorModel;
 import com.limelight.limelight.network.Api;
@@ -101,13 +102,19 @@ public class FeedFragment extends Fragment {
 
 
         RecyclerView recyclerView = view.findViewById(R.id.feed_recycler);
+        RecyclerViewClickListener listener = (v, position) -> {
+            Intent i = new Intent(getActivity(), ViewArticleActivity.class);
+            i.putExtra("url", feedArticles.get(position).getLink());
+            startActivity(i);
+        };
+
 
         // use a linear layout manager
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(layoutManager);
 
         // specify an adapter (see also next example)
-        mAdapter = new FeedAdapter(feedArticles, getActivity());
+        mAdapter = new FeedAdapter(feedArticles,listener);
         recyclerView.setAdapter(mAdapter);
 
         swipeContainer.setOnRefreshListener(() -> {
@@ -120,7 +127,34 @@ public class FeedFragment extends Fragment {
             });
         });
 
-        LinearLayoutManager linearLayoutManager = ((LinearLayoutManager) recyclerView.getLayoutManager());
+//        //code to set a onclick listener on each item of recycler view
+//        recyclerView.addOnItemTouchListener(new RecyclerItemClickListener(getContext(), recyclerView, new RecyclerItemClickListener.OnItemClickListener(){
+//
+//            @Override
+//            public void onItemClick(View view, int position) {
+//                RelativeLayout article = view.findViewById(R.id.article);
+//                article.setOnClickListener(v->{
+//                    //go to intent
+//                    Intent i = new Intent(getActivity(), ViewArticleActivity.class);
+//                    startActivity(i);
+//
+//                });
+//            }
+//
+//            @Override
+//            public void onItemLongClick(View view, int position) {
+//
+//            }
+//        }));
+
+
+
+
+
+
+
+
+                LinearLayoutManager linearLayoutManager = ((LinearLayoutManager) recyclerView.getLayoutManager());
         // TODO Fix scrolling
 //        recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
 //            @Override
