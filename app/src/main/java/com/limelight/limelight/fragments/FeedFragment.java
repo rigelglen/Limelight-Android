@@ -50,10 +50,16 @@ public class FeedFragment extends Fragment {
     private int page = 1;
     private String token = "";
     private static boolean loadMore = true;
+    FeedViewModel model;
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        model = ViewModelProviders.of(getActivity()).get(FeedViewModel.class);
+    }
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-
         return inflater.inflate(R.layout.fragment_feed, container, false);
     }
 
@@ -80,7 +86,7 @@ public class FeedFragment extends Fragment {
             logout();
         }
 
-        FeedViewModel model = ViewModelProviders.of(getActivity()).get(FeedViewModel.class);
+        model = ViewModelProviders.of(getActivity()).get(FeedViewModel.class);
 
         model.getArticles(token, page, getActivity(), false, false).observe(this, articleList -> {
             feedArticles.clear();

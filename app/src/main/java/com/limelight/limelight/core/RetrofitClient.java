@@ -26,7 +26,6 @@ public class RetrofitClient {
         HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
         logging.setLevel(HttpLoggingInterceptor.Level.BODY);
         OkHttpClient.Builder httpClient = new OkHttpClient.Builder();
-        httpClient.addInterceptor(logging);
 
         if (BuildConfig.DEBUG) {
             httpClient.addInterceptor(logging);
@@ -42,7 +41,7 @@ public class RetrofitClient {
         apiService = retrofit.create(Api.class);
     }
 
-    public static RetrofitClient getInstance() {
+    public static synchronized RetrofitClient getInstance() {
         if (instance == null) {
             instance = new RetrofitClient();
         }
