@@ -10,6 +10,12 @@
         <item name="android:windowLightStatusBar">true</item>
         <item name="android:fontFamily">@font/montserrat</item>
         <item name="android:homeAsUpIndicator">@drawable/ic_back_black</item>
+        <item name="actionOverflowButtonStyle">@style/MyActionButtonOverflow</item>
     </style>
+
+<style name="MyActionButtonOverflow" parent="Widget.AppCompat.ActionButton.Overflow">
+    <item name="android:src">@drawable/ic_option</item>
+</style>
+
 
 </resources>
