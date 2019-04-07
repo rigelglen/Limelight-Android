@@ -16,7 +16,8 @@
         android:usesCleartextTraffic="true"
         tools:ignore="AllowBackup"
         tools:replace="android:icon">
-        <activity android:name=".activities.ViewArticleActivity"></activity>
+        <activity android:name=".activities.ViewCategoryActivity"></activity>
+        <activity android:name=".activities.ViewArticleActivity" />
 
         <uses-library
             android:name="org.apache.http.legacy"

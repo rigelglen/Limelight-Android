@@ -34,12 +34,13 @@
     <string name="view_in_browser">View in Browser</string>
     <string name="share">Share</string>
     <string name="analyze">Analyze</string>
-    <string name="add_topic">Add Topics</string>
-    <string name="search_topics">Search Topics</string>
+
     <string name="your_profile">YOUR PROFILE</string>
     <string name="manage_profile">Manage Profile</string>
     <string name="logout">Logout</string>
     <string name="following">Following</string>
+    <string name="topics">TOPICS</string>
+    <string name="search_topic">Search Topic</string>
 
 
 </resources>

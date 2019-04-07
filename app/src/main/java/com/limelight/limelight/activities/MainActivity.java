@@ -13,18 +13,13 @@ import com.limelight.limelight.fragments.ClassifyFragment;
 import com.limelight.limelight.fragments.FeedFragment;
 import com.limelight.limelight.R;
 import com.limelight.limelight.fragments.ProfileFragment;
-import com.limelight.limelight.fragments.HeadlineFragment;
+import com.limelight.limelight.fragments.FollowFragment;
 import com.limelight.limelight.models.Article;
 
 import java.util.ArrayList;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProviders;
-import cn.pedant.SweetAlert.SweetAlertDialog;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -98,7 +93,7 @@ public class MainActivity extends AppCompatActivity {
                     fragment = new FeedFragment();
                     break;
                 case 1:
-                    fragment = new HeadlineFragment();
+                    fragment = new FollowFragment();
                     break;
                 case 2:
 

@@ -1,6 +1,8 @@
 package com.limelight.limelight.network;
 
+import com.google.gson.JsonObject;
 import com.limelight.limelight.models.Article;
+import com.limelight.limelight.models.Topic;
 import com.limelight.limelight.models.User;
 
 import java.util.ArrayList;
@@ -25,5 +27,11 @@ public interface Api {
 
     @GET("feed/getFeed")
     Call<ArrayList<Article>> getFeed(@Header("Authorization") String token, @Query("page") int page);
+
+    @GET("topic/getFollows")
+    Call<ArrayList<Topic>> getFollows(@Header("Authorization") String token);
+
+    @POST("topic/removeFollow")
+    Call<JsonObject> removeFollow(@Header("Authorization") String token, @Body HashMap<String, String> body);
 
 }
