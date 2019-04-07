@@ -34,8 +34,11 @@
     <string name="view_in_browser">View in Browser</string>
     <string name="share">Share</string>
     <string name="analyze">Analyze</string>
-    <string name="add_topic">Add</string>
+    <string name="add_topic">Add Topics</string>
     <string name="search_topics">Search Topics</string>
+    <string name="your_profile">YOUR PROFILE</string>
+    <string name="manage_profile">Manage Profile</string>
+    <string name="logout">Logout</string>
 
 
 </resources>

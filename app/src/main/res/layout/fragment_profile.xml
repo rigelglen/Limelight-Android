@@ -1,31 +1,121 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_marginTop="65dp">
-
-    <RelativeLayout
-        android:id="@+id/addTopicLayout"
+    android:paddingTop="50dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <TextView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:text="@string/your_profile"
+        android:gravity="center|center_vertical"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        android:textColor="@color/black"
+        android:id="@+id/profileTitle"
 
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+        android:layout_marginBottom="20dp"
+        />
+
+    <TextView
+        android:id="@+id/manageHeader"
+        android:layout_below="@id/profileTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/manage_profile"
+        android:padding="5dp"
+        android:layout_margin="18dp"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        android:textColor="@color/color_blue"
+        android:gravity="left"
+        />
+
+    <!--<View-->
+        <!--android:layout_above="@+id/logoutItem"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="1dp"-->
+        <!--android:background="@color/color_grey"-->
+        <!--android:layout_marginLeft="15dp"-->
+        <!--android:layout_marginRight="15dp"-->
+        <!--/>-->
+    <!--<TextView-->
+        <!--android:id="@+id/logoutItem"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:text="@string/logout"-->
+        <!--android:textSize="18sp"-->
+        <!--android:layout_below="@+id/manageHeader"-->
+        <!--android:padding="5dp"-->
+        <!--android:layout_marginStart="18dp"-->
+        <!--android:layout_marginBottom="12dp"-->
+        <!--android:layout_marginTop="12dp"-->
+        <!--/>-->
+    <!--<View-->
+        <!--android:layout_above="@+id/addTopicHeader"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="1dp"-->
+        <!--android:background="@color/color_grey"-->
+        <!--android:layout_marginLeft="15dp"-->
+        <!--android:layout_marginRight="15dp"-->
+        <!--/>-->
+
+    <Button
+        android:id="@+id/logoutButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/manageHeader"
+        android:gravity="center"
+        android:layout_centerHorizontal="true"
+        android:text="@string/logout"
+        android:textSize="16sp"
+
+        android:padding="15dp"
+        style="@style/Widget.MaterialComponents.Button.Icon"
+        app:icon="@drawable/ic_logout"
+        android:layout_marginEnd="18dp"
+        android:layout_marginStart="18dp"
+        app:iconGravity="textStart"
+        app:iconPadding="20dp"
+        />
+
+
+    <TextView
+        android:id="@+id/addTopicHeader"
+        android:layout_below="@id/logoutButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/add_topic"
+        android:padding="5dp"
+        android:layout_margin="18dp"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        android:textColor="@color/color_blue"
+        android:gravity="left"
+        />
+
+    <LinearLayout
+        android:layout_height="wrap_content"
+        android:layout_width="fill_parent"
+        android:orientation="horizontal"
+        android:layout_below="@+id/addTopicHeader"
+        android:id="@+id/addTopicLayout"
+        >
 
 
 
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_below="@id/profileTitle"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:hint="@string/search_topics"
+            android:hint="@string/add_topic"
             app:boxStrokeColor="@color/colorPrimary"
             app:boxStrokeWidth="3dp"
             android:textColorHint="@color/black"
-            android:layout_margin="10dp"
+            android:layout_marginEnd="2dp"
+            android:layout_marginStart="20dp"
+
             android:id="@+id/topicInputLayout"
             android:layout_weight="1"
             >
@@ -41,32 +131,35 @@
 
         </com.google.android.material.textfield.TextInputLayout>
 
-            <ImageButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:layout_weight="0"
-
-                android:background="@drawable/button_round"
-                android:src="@drawable/ic_add"
-                android:paddingTop="16dp"
-                android:paddingEnd="18dp"
-                android:paddingStart="18dp"
-                android:paddingBottom="21dp"
-                />
 
 
 
+
+
+        <ImageButton
+            android:layout_height="wrap_content"
+            android:background="@drawable/button_round"
+            android:src="@drawable/ic_add"
+            android:layout_gravity="center|center_vertical"
+            android:layout_width="wrap_content"
+            android:layout_marginTop="3dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="12dp"
+            android:paddingStart="15dp"
+            android:paddingEnd="15dp"
+            android:paddingBottom="19dp"
+            android:paddingTop="19dp"
+            android:layout_weight="0"
+
+            />
     </LinearLayout>
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/addTopicLayout">
 
 
-</RelativeLayout>
-    <!--<ListView-->
-        <!--android:id="@+id/profileListView"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="match_parent"-->
-        <!--android:layout_below=""-->
-        <!--&gt;-->
-    <!--</ListView>-->
+    </RelativeLayout>
+
 </RelativeLayout>
