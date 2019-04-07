@@ -3,7 +3,16 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingTop="50dp">
+   >
+
+    <ImageButton
+        android:id="@+id/backBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_back_black"
+        android:padding="20dp"
+        android:background="@android:color/transparent"
+        />
 
     <TextView
         android:id="@+id/title"
@@ -14,5 +23,23 @@
         android:text="@string/topics"
         android:textColor="@color/black"
         android:textSize="30sp"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        android:layout_marginTop="50dp"
+        />
+
+    <RelativeLayout
+        android:id="@+id/followOptionLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/title"
+        android:background="@color/color_grey"
+        >
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="17sp"
+            />
+
+    </RelativeLayout>
 </RelativeLayout>
