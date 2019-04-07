@@ -45,10 +45,10 @@ public class MainActivity extends AppCompatActivity {
 
         bottomNavigation = (AHBottomNavigation) findViewById(R.id.bottom_navigation);
 
-        AHBottomNavigationItem item1 = new AHBottomNavigationItem(R.string.tab_1, R.drawable.ic_check, R.color.color_grey);
-        AHBottomNavigationItem item2 = new AHBottomNavigationItem(R.string.tab_2, R.drawable.ic_check, R.color.color_grey);
-        AHBottomNavigationItem item3 = new AHBottomNavigationItem(R.string.tab_3, R.drawable.ic_check, R.color.color_grey);
-        AHBottomNavigationItem item4 = new AHBottomNavigationItem(R.string.tab_4, R.drawable.ic_check, R.color.color_grey);
+        AHBottomNavigationItem item1 = new AHBottomNavigationItem(R.string.tab_1, R.drawable.ic_for_you, R.color.color_grey);
+        AHBottomNavigationItem item2 = new AHBottomNavigationItem(R.string.tab_2, R.drawable.ic_earth, R.color.color_grey);
+        AHBottomNavigationItem item3 = new AHBottomNavigationItem(R.string.tab_3, R.drawable.ic_analyze, R.color.color_grey);
+        AHBottomNavigationItem item4 = new AHBottomNavigationItem(R.string.tab_4, R.drawable.ic_settings, R.color.color_grey);
 
 
         bottomNavigation.addItem(item1);
@@ -60,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
         // Disable the translation inside the CoordinatorLayout
         bottomNavigation.setBehaviorTranslationEnabled(false);
         // Change colors
-        bottomNavigation.setAccentColor(Color.parseColor("#F63D2B"));
+        bottomNavigation.setAccentColor(Color.parseColor("#2196F3"));
         bottomNavigation.setInactiveColor(Color.parseColor("#747474"));
         // Force to tint the drawable (useful for font with icon for example)
         bottomNavigation.setForceTint(true);
