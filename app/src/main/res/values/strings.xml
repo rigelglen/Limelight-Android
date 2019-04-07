@@ -39,6 +39,7 @@
     <string name="your_profile">YOUR PROFILE</string>
     <string name="manage_profile">Manage Profile</string>
     <string name="logout">Logout</string>
+    <string name="following">Following</string>
 
 
 </resources>

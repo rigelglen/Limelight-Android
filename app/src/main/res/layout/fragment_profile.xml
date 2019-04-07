@@ -159,6 +159,36 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/addTopicLayout">
 
+        <TextView
+            android:id="@+id/yourFollowsHeader"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/following"
+            android:padding="5dp"
+            android:layout_margin="18dp"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            android:textColor="@color/color_blue"
+            android:gravity="left"
+            />
+
+        <ListView
+            android:id="@+id/followsListView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/yourFollowsHeader"
+            android:divider="@color/color_grey"
+            android:dividerHeight="1dp"
+            android:footerDividersEnabled="false"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="15dp"
+            >
+
+
+        </ListView>
+
+
+
 
     </RelativeLayout>
 
