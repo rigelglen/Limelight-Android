@@ -6,24 +6,16 @@ import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
-import android.widget.Toast;
 
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigation;
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigationItem;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.limelight.limelight.core.RetrofitClient;
 import com.limelight.limelight.fragments.ClassifyFragment;
 import com.limelight.limelight.fragments.FeedFragment;
 import com.limelight.limelight.R;
-import com.limelight.limelight.fragments.FollowFragment;
+import com.limelight.limelight.fragments.ProfileFragment;
 import com.limelight.limelight.fragments.HeadlineFragment;
 import com.limelight.limelight.models.Article;
-import com.limelight.limelight.models.ErrorModel;
-import com.limelight.limelight.network.Api;
-import com.limelight.limelight.viewmodel.FeedViewModel;
 
-import java.io.IOException;
 import java.util.ArrayList;
 
 import androidx.annotation.NonNull;
@@ -33,9 +25,6 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import cn.pedant.SweetAlert.SweetAlertDialog;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -116,7 +105,7 @@ public class MainActivity extends AppCompatActivity {
                     fragment = new ClassifyFragment();
                     break;
                 case 3:
-                    fragment = new FollowFragment();
+                    fragment = new ProfileFragment();
                     break;
                 default:
                     break;

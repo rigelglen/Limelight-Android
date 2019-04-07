@@ -106,7 +106,14 @@ public class ViewArticleActivity extends AppCompatActivity {
                 sendIntent.setAction(Intent.ACTION_SEND);
                 sendIntent.putExtra(Intent.EXTRA_TEXT, url);
                 sendIntent.setType("text/plain");
-                startActivity(sendIntent);
+                try {
+                    startActivity(sendIntent);
+                } catch (ActivityNotFoundException e){
+                    Toast.makeText(ViewArticleActivity.this, "There are no browsers installed.", Toast.LENGTH_SHORT).show();
+                } catch(Exception e){
+                    Toast.makeText(this, "There are no browsers installed.", Toast.LENGTH_SHORT).show();
+                }
+
                 return true;
             case R.id.menu_open_browser:
                 //Toast.makeText(this, "menu_open_browser", Toast.LENGTH_SHORT).show();
