@@ -41,6 +41,11 @@
     <string name="following">Following</string>
     <string name="topics">TOPICS</string>
     <string name="search_topic">Search Topic</string>
+    <string name="clickbait">Clickbait</string>
+    <string name="sentiment">Sentiment</string>
+    <string name="writing_style">Writing Style</string>
+    <string name="fact_checking">Fact Checking</string>
+    <string name="close">CLOSE</string>
 
 
 </resources>
