@@ -1,7 +1,6 @@
 package com.limelight.limelight.adapters;
 
 import android.content.Context;
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,18 +9,13 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.limelight.limelight.R;
-import com.limelight.limelight.activities.LoginActivity;
-import com.limelight.limelight.activities.RegisterActivity;
-import com.limelight.limelight.activities.ViewArticleActivity;
 import com.limelight.limelight.listeners.RecyclerViewClickListener;
 import com.limelight.limelight.models.Article;
 import com.squareup.picasso.Picasso;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 import androidx.annotation.NonNull;
-import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 public class FeedAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
@@ -30,8 +24,7 @@ public class FeedAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private Context context;
     private RecyclerViewClickListener mListener;
 
-    public FeedAdapter(ArrayList<Article> feedArticles, RecyclerViewClickListener listener)
-    {
+    public FeedAdapter(ArrayList<Article> feedArticles, RecyclerViewClickListener listener) {
         this.mListener = listener;
         this.feedArticles = feedArticles;
     }
@@ -48,11 +41,11 @@ public class FeedAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
 
         final MyViewHolder viewHolder = (MyViewHolder) holder;
-        if(feedArticles.get(position).getTitle()!=null)
+        if (feedArticles.get(position).getTitle() != null)
             viewHolder.articleTitle.setText(feedArticles.get(position).getTitle());
-        if(feedArticles.get(position).getSource()!=null)
+        if (feedArticles.get(position).getSource() != null)
             viewHolder.articleSource.setText(feedArticles.get(position).getSource());
-        if(feedArticles.get(position).getImage()!=null)
+        if (feedArticles.get(position).getImage() != null)
             Picasso.get().load(feedArticles.get(position).getImage()).placeholder(R.drawable.app_logo).into(viewHolder.articleThumb);
 
         //click to read article
@@ -64,7 +57,7 @@ public class FeedAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         return feedArticles.size();
     }
 
-    public void clear(){
+    public void clear() {
         feedArticles.clear();
         notifyDataSetChanged();
     }
@@ -75,8 +68,7 @@ public class FeedAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     }
 
 
-
-    public class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
+    public class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         // init the item view's
         TextView articleTitle, articleSource;
         ImageView articleThumb;
@@ -84,7 +76,7 @@ public class FeedAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         private RecyclerViewClickListener mListener;
 
 
-        public MyViewHolder(View itemView, RecyclerViewClickListener listener) {
+        MyViewHolder(View itemView, RecyclerViewClickListener listener) {
             super(itemView);
             article = itemView.findViewById(R.id.article);
             articleTitle = itemView.findViewById(R.id.articleTitle);
@@ -99,10 +91,6 @@ public class FeedAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             mListener.onClick(view, getAdapterPosition());
         }
     }
-
-
-
-
 
 
 }

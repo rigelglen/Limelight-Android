@@ -1,9 +1,5 @@
 package com.limelight.limelight.core;
 
-import android.content.Context;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
-
 import com.google.gson.GsonBuilder;
 import com.limelight.limelight.BuildConfig;
 import com.limelight.limelight.network.Api;

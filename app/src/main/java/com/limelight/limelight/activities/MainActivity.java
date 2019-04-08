@@ -9,11 +9,11 @@ import android.util.Log;
 
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigation;
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigationItem;
+import com.limelight.limelight.R;
 import com.limelight.limelight.fragments.ClassifyFragment;
 import com.limelight.limelight.fragments.FeedFragment;
-import com.limelight.limelight.R;
-import com.limelight.limelight.fragments.ProfileFragment;
 import com.limelight.limelight.fragments.FollowFragment;
+import com.limelight.limelight.fragments.ProfileFragment;
 import com.limelight.limelight.models.Article;
 
 import java.util.ArrayList;
@@ -30,7 +30,6 @@ public class MainActivity extends AppCompatActivity {
     private int feedPage = 1;
 
 
-
     ArrayList<Article> feedArticles = new ArrayList<>();
 
     @Override
@@ -38,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        bottomNavigation = (AHBottomNavigation) findViewById(R.id.bottom_navigation);
+        bottomNavigation = findViewById(R.id.bottom_navigation);
 
         AHBottomNavigationItem item1 = new AHBottomNavigationItem(R.string.tab_1, R.drawable.ic_for_you, R.color.color_grey);
         AHBottomNavigationItem item2 = new AHBottomNavigationItem(R.string.tab_2, R.drawable.ic_earth, R.color.color_grey);
@@ -65,7 +64,7 @@ public class MainActivity extends AppCompatActivity {
 
         // Set current item programmatically
 
-        String token = "";
+        String token;
         sharedPref = getSharedPreferences("limelight", Context.MODE_PRIVATE);
 
         if (sharedPref.contains("token")) {

@@ -9,7 +9,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -65,23 +64,18 @@ public class ProfileFragment extends Fragment {
 
         logoutButton = view.findViewById(R.id.logoutButton);
         //logic for logout
-        logoutButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                new SweetAlertDialog(getContext(), SweetAlertDialog.WARNING_TYPE)
+        logoutButton.setOnClickListener(v -> new SweetAlertDialog(getContext(), SweetAlertDialog.WARNING_TYPE)
 
-                        .setContentText("Are you sure you want to logout?")
-                        .setConfirmText("Yes")
-                        .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
-                            @Override
-                            public void onClick(SweetAlertDialog sDialog) {
-                                sDialog.dismissWithAnimation();
-                                logout();
-                            }
-                        })
-                        .show();
-            }
-        });
+                .setContentText("Are you sure you want to logout?")
+                .setConfirmText("Yes")
+                .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                    @Override
+                    public void onClick(SweetAlertDialog sDialog) {
+                        sDialog.dismissWithAnimation();
+                        logout();
+                    }
+                })
+                .show());
 
         //logic for adding new follows
 

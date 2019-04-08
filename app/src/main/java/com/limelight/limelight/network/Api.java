@@ -3,6 +3,7 @@ package com.limelight.limelight.network;
 import com.google.gson.JsonObject;
 import com.limelight.limelight.models.Article;
 import com.limelight.limelight.models.Category;
+import com.limelight.limelight.models.ClassificationReport;
 import com.limelight.limelight.models.Topic;
 import com.limelight.limelight.models.User;
 
@@ -13,9 +14,7 @@ import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
-import retrofit2.http.Headers;
 import retrofit2.http.POST;
-import retrofit2.http.Path;
 import retrofit2.http.Query;
 
 public interface Api {
@@ -36,6 +35,8 @@ public interface Api {
     Call<JsonObject> removeFollow(@Header("Authorization") String token, @Body HashMap<String, String> body);
 
     @GET("feed/getFeedByCategory")
-    Call<Category> getFeedByCategory(@Header("Authorization") String token, @Query("categoryString") String categoryString,@Query("page") int page);
+    Call<Category> getFeedByCategory(@Header("Authorization") String token, @Query("categoryString") String categoryString, @Query("page") int page);
 
+    @GET("ml/getClassification")
+    Call<ClassificationReport> getClassificationReport(@Header("Authorization") String token, @Query("url") String url);
 }

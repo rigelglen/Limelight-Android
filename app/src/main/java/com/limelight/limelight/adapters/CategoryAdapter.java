@@ -22,6 +22,7 @@ public class CategoryAdapter extends BaseAdapter {
 
         inflter = (LayoutInflater.from(context));
     }
+
     @Override
     public int getCount() {
         return cat.size();

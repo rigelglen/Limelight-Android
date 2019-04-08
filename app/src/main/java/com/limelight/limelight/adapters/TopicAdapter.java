@@ -23,7 +23,7 @@ public class TopicAdapter extends ArrayAdapter<Topic> implements View.OnClickLis
     public TopicAdapter(ArrayList<Topic> data, Context context) {
         super(context, R.layout.item_topic, data);
         this.dataSet = data;
-        this.mContext=context;
+        this.mContext = context;
 
     }
 
@@ -34,9 +34,8 @@ public class TopicAdapter extends ArrayAdapter<Topic> implements View.OnClickLis
     }
 
 
-
     @Override
-    public View getView(int position, View convertView, ViewGroup parent){
+    public View getView(int position, View convertView, ViewGroup parent) {
         Topic p = getItem(position);
 //        ViewHolder viewHolder; // view lookup cache stored in tag
 //
@@ -66,9 +65,8 @@ public class TopicAdapter extends ArrayAdapter<Topic> implements View.OnClickLis
         }
 
 
-
         if (p != null) {
-            TextView topicName = (TextView) v.findViewById(R.id.topicName);
+            TextView topicName = v.findViewById(R.id.topicName);
 
 
             if (topicName != null) {

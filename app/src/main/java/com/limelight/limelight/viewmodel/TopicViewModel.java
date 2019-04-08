@@ -6,7 +6,6 @@ import android.widget.Toast;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.limelight.limelight.core.RetrofitClient;
-import com.limelight.limelight.models.Article;
 import com.limelight.limelight.models.ErrorModel;
 import com.limelight.limelight.models.Topic;
 import com.limelight.limelight.network.Api;
@@ -40,7 +39,6 @@ public class TopicViewModel extends ViewModel {
         //finally we will return the ArrayList
         return topicArrayList;
     }
-
 
 
     //This method is using Retrofit to get the JSON data from URL
@@ -92,10 +90,6 @@ public class TopicViewModel extends ViewModel {
 
         });
     }
-
-
-
-
 
 
 }

@@ -4,11 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Bitmap;
-import android.graphics.Canvas;
-import android.graphics.Color;
 import android.graphics.drawable.AnimationDrawable;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -22,13 +18,13 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.textfield.TextInputEditText;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.limelight.limelight.R;
 import com.limelight.limelight.core.RetrofitClient;
 import com.limelight.limelight.models.ErrorModel;
 import com.limelight.limelight.models.User;
 import com.limelight.limelight.network.Api;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -36,7 +32,6 @@ import java.util.regex.Pattern;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.ContextCompat;
 import br.com.simplepass.loadingbutton.customViews.CircularProgressButton;
 import kotlin.Unit;
 import retrofit2.Call;
@@ -95,23 +90,23 @@ public class RegisterActivity extends AppCompatActivity {
             TextInputEditText userName = findViewById(R.id.userName);
             TextInputEditText userPassword = findViewById(R.id.userPassword);
             TextInputEditText confirmUserPassword = findViewById(R.id.confirmUserPassword);
-            String user=null;
-            if(userName.getText()!=null)
+            String user = null;
+            if (userName.getText() != null)
                 user = userName.getText().toString().trim();
             HashMap<String, String> map = new HashMap<>();
 
             if (user != null && !user.isEmpty() && isValid(user)) {
                 String pass = null;
                 String pass2 = null;
-                if(userPassword.getText()!=null)
+                if (userPassword.getText() != null)
                     pass = userPassword.getText().toString();
 
-                if(confirmUserPassword.getText()!=null)
+                if (confirmUserPassword.getText() != null)
                     pass2 = confirmUserPassword.getText().toString();
 
                 if (pass != null && !pass.isEmpty() && pass2 != null && !pass2.isEmpty()) {
                     if (pass.equals(pass2)) {
-                        if (pass.length() >=6) {
+                        if (pass.length() >= 6) {
                             map.put("email", user);
                             map.put("password", pass);
 
@@ -120,14 +115,14 @@ public class RegisterActivity extends AppCompatActivity {
                             Call<User> call = api.registerUser(map);
 //                            userRegisterButton.startMorphAnimation();
                             hideKeyboard(RegisterActivity.this);
-                            userRegisterButton.startAnimation(()-> Unit.INSTANCE);
+                            userRegisterButton.startAnimation(() -> Unit.INSTANCE);
                             call.enqueue(new Callback<User>() {
                                 @Override
                                 public void onResponse(@NonNull Call<User> call, @NonNull Response<User> response) {
 //                                    userRegisterButton.startMorphRevertAnimation();
 //                                    userRegisterButton.revertAnimation(()-> Unit.INSTANCE);
                                     userRegisterButton.setEnabled(true);
-                                    userRegisterButton.revertAnimation(()->Unit.INSTANCE);
+                                    userRegisterButton.revertAnimation(() -> Unit.INSTANCE);
                                     if (response.body() != null && response.isSuccessful()) {
                                         String token = response.body().getToken();
                                         Log.i("abc", token);
@@ -160,7 +155,7 @@ public class RegisterActivity extends AppCompatActivity {
 
                                 @Override
                                 public void onFailure(@NonNull Call<User> call, @NonNull Throwable t) {
-                                    userRegisterButton.revertAnimation(()-> Unit.INSTANCE);
+                                    userRegisterButton.revertAnimation(() -> Unit.INSTANCE);
                                     userRegisterButton.setEnabled(true);
                                     Log.i("abc", "ERROR");
                                     Log.i("cdf", t.toString());
@@ -207,13 +202,13 @@ public class RegisterActivity extends AppCompatActivity {
         return pat.matcher(email).matches();
     }
 
-    public static void hideKeyboard( Activity activity ) {
-        InputMethodManager imm = (InputMethodManager)activity.getSystemService( Context.INPUT_METHOD_SERVICE );
+    public static void hideKeyboard(Activity activity) {
+        InputMethodManager imm = (InputMethodManager) activity.getSystemService(Context.INPUT_METHOD_SERVICE);
         View f = activity.getCurrentFocus();
-        if( null != f && null != f.getWindowToken() && EditText.class.isAssignableFrom( f.getClass() ) )
-            imm.hideSoftInputFromWindow( f.getWindowToken(), 0 );
+        if (null != f && null != f.getWindowToken() && EditText.class.isAssignableFrom(f.getClass()))
+            imm.hideSoftInputFromWindow(f.getWindowToken(), 0);
         else
-            activity.getWindow().setSoftInputMode( WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN );
+            activity.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
     }
 
     @Override

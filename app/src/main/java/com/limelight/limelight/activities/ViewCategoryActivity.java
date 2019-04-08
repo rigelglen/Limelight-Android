@@ -1,15 +1,5 @@
 package com.limelight.limelight.activities;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
-import cn.pedant.SweetAlert.SweetAlertDialog;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -35,6 +25,16 @@ import com.limelight.limelight.network.Api;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
+import cn.pedant.SweetAlert.SweetAlertDialog;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 public class ViewCategoryActivity extends AppCompatActivity {
     private TextView title;
     private ImageButton backBtn;
@@ -42,7 +42,7 @@ public class ViewCategoryActivity extends AppCompatActivity {
     private SharedPreferences sharedPref;
     private SwipeRefreshLayout swipeContainer;
     private RecyclerView.Adapter mAdapter;
-    private int page=1;
+    private int page = 1;
     String token;
     String titleText;
     ArrayList<Article> articlesList;
@@ -55,11 +55,11 @@ public class ViewCategoryActivity extends AppCompatActivity {
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
             titleText = extras.getString("cat");
-            title=findViewById(R.id.title);
+            title = findViewById(R.id.title);
             title.setText(titleText);
         }
 
-        followButton=findViewById(R.id.followButton);
+        followButton = findViewById(R.id.followButton);
         followButton.setVisibility(View.GONE);
 
         backBtn = findViewById(R.id.backBtn);
@@ -74,7 +74,7 @@ public class ViewCategoryActivity extends AppCompatActivity {
 
 
         sharedPref = getSharedPreferences("limelight", Context.MODE_PRIVATE);
-        token="";
+        token = "";
         if (sharedPref.contains("token")) {
             //get token from sharedprefs
             token = "Bearer " + sharedPref.getString("token", "");
@@ -100,9 +100,8 @@ public class ViewCategoryActivity extends AppCompatActivity {
         mAdapter.notifyDataSetChanged();
 
 
-        if(!token.equals("")&&token!=null)
-        {
-            loadArticles(token,titleText,page,this);
+        if (!token.equals("") && token != null) {
+            loadArticles(token, titleText, page, this);
 
         } else {
             logout();
@@ -111,7 +110,7 @@ public class ViewCategoryActivity extends AppCompatActivity {
 
         swipeContainer.setOnRefreshListener(() -> {
             articlesList.clear();
-            loadArticles(token, titleText, page,this);
+            loadArticles(token, titleText, page, this);
         });
 
 
@@ -123,13 +122,7 @@ public class ViewCategoryActivity extends AppCompatActivity {
 //        }
 
 
-
-
-
-
-
     }
-
 
 
     //function to logout
@@ -193,19 +186,6 @@ public class ViewCategoryActivity extends AppCompatActivity {
 
         });
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 }

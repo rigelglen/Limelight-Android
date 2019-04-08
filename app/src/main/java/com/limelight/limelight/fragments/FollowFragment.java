@@ -47,7 +47,7 @@ public class FollowFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        topicSearch=view.findViewById(R.id.topicSearch);
+        topicSearch = view.findViewById(R.id.topicSearch);
         //world nation bussiness technology entertainment sports science health
         suggestedTopics = new ArrayList<>();
         suggestedTopics.add("World");
@@ -64,46 +64,40 @@ public class FollowFragment extends Fragment {
         CategoryAdapter customAdapter = new CategoryAdapter(getContext(), suggestedTopics);
         catListView.setAdapter(customAdapter);
 
-        catListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
+        catListView.setOnItemClickListener((parent, v, position, id) -> {
 
-                Intent i = new Intent(getActivity(), ViewCategoryActivity.class);
-                i.putExtra("cat", suggestedTopics.get(position));
+            Intent i = new Intent(getActivity(), ViewCategoryActivity.class);
+            i.putExtra("cat", suggestedTopics.get(position));
 
+            startActivity(i);
+        });
+
+
+        //Search by string
+        topicSearch = view.findViewById(R.id.topicSearch);
+        topicSearch.setOnClickListener(v -> {
+            TextInputEditText searchString = view.findViewById(R.id.searchString);
+            String searchQuery = searchString.getText().toString();
+            if (searchQuery.equals("")) {
+                hideKeyboard(getActivity());
+                Toast.makeText(getContext(), "Invalid Search Query", Toast.LENGTH_SHORT).show();
+            } else {
+                hideKeyboard(getActivity());
+                Intent i = new Intent(getActivity(), ViewSearchActivity.class);
+                i.putExtra("searchQuery", searchQuery);
                 startActivity(i);
             }
         });
 
 
-        //Search by string
-        topicSearch=view.findViewById(R.id.topicSearch);
-        topicSearch.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                TextInputEditText searchString = view.findViewById(R.id.searchString);
-                String searchQuery = searchString.getText().toString();
-                if(searchQuery.equals("") || searchString==null){
-                    hideKeyboard(getActivity());
-                    Toast.makeText(getContext(), "Invalid Search Query", Toast.LENGTH_SHORT).show();
-                } else {
-                    hideKeyboard(getActivity());
-                    Intent i = new Intent(getActivity(), ViewSearchActivity.class);
-                    i.putExtra("searchQuery", searchQuery);
-                    startActivity(i);
-                }
-            }
-        });
-
-
-
     }
 
-    public static void hideKeyboard( Activity activity ) {
-        InputMethodManager imm = (InputMethodManager)activity.getSystemService( Context.INPUT_METHOD_SERVICE );
+    private static void hideKeyboard(Activity activity) {
+        InputMethodManager imm = (InputMethodManager) activity.getSystemService(Context.INPUT_METHOD_SERVICE);
         View f = activity.getCurrentFocus();
-        if( null != f && null != f.getWindowToken() && EditText.class.isAssignableFrom( f.getClass() ) )
-            imm.hideSoftInputFromWindow( f.getWindowToken(), 0 );
+        if (null != f && null != f.getWindowToken() && EditText.class.isAssignableFrom(f.getClass()))
+            imm.hideSoftInputFromWindow(f.getWindowToken(), 0);
         else
-            activity.getWindow().setSoftInputMode( WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN );
+            activity.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
     }
 }

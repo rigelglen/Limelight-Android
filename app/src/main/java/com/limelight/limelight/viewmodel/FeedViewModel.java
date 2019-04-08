@@ -1,7 +1,6 @@
 package com.limelight.limelight.viewmodel;
 
 import android.content.Context;
-import android.util.Log;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
@@ -9,13 +8,10 @@ import com.google.gson.GsonBuilder;
 import com.limelight.limelight.core.RetrofitClient;
 import com.limelight.limelight.models.Article;
 import com.limelight.limelight.models.ErrorModel;
-import com.limelight.limelight.models.User;
 import com.limelight.limelight.network.Api;
 
 import java.io.IOException;
-import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Observable;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.LiveData;
@@ -25,7 +21,6 @@ import cn.pedant.SweetAlert.SweetAlertDialog;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.Retrofit;
 
 public class FeedViewModel extends ViewModel {
 
@@ -36,7 +31,7 @@ public class FeedViewModel extends ViewModel {
     public LiveData<ArrayList<Article>> getArticles(String apiKey, int page, Context ctx, boolean force, boolean moreData) {
         //if the ArrayList is null
         if (articleArrayList == null || force) {
-            if(!moreData)
+            if (!moreData)
                 articleArrayList = new MutableLiveData<>();
             //we will load it asynchronously from server in this method
             loadArticles(apiKey, page, ctx);

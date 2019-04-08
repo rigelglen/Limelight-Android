@@ -1,7 +1,5 @@
 package com.limelight.limelight.activities;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.ProgressDialog;
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
@@ -12,10 +10,15 @@ import android.view.MenuItem;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.Toast;
-import androidx.appcompat.widget.Toolbar;
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.limelight.limelight.R;
+import com.limelight.limelight.dialogs.ClassificationDialog;
+
+import java.net.URL;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 public class ViewArticleActivity extends AppCompatActivity {
     private String url;
@@ -30,14 +33,14 @@ public class ViewArticleActivity extends AppCompatActivity {
         setContentView(R.layout.activity_view_article);
 
 
-        toolbar=findViewById(R.id.toolbar);
+        toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 
 
         Intent intent = getIntent();
-        url=intent.getExtras().getString("url", "");
+        url = intent.getExtras().getString("url", "");
         mySwipeRefreshLayout = findViewById(R.id.swipeContainer);
         webview = findViewById(R.id.webview);
         webview.setWebViewClient(new WebViewClient() {
@@ -64,25 +67,18 @@ public class ViewArticleActivity extends AppCompatActivity {
         webview.getSettings().setDisplayZoomControls(false);
 
 
-        if(!url.equals("")){
+        if (!url.equals("")) {
             //open the article in webview
             progressDialog = new ProgressDialog(ViewArticleActivity.this, R.style.AlertDialogStyle);
             progressDialog.setMessage("Loading...");
             progressDialog.setCancelable(false);
             progressDialog.show();
-            webview.loadUrl("https://mercury.postlight.com/amp?url="+url);
+            webview.loadUrl("https://mercury.postlight.com/amp?url=" + url);
         } else {
             Toast.makeText(this, "An Error Occurred", Toast.LENGTH_SHORT).show();
         }
 
-        mySwipeRefreshLayout.setOnRefreshListener(
-                new SwipeRefreshLayout.OnRefreshListener() {
-                    @Override
-                    public void onRefresh() {
-                        webview.reload();
-                    }
-                }
-        );
+        mySwipeRefreshLayout.setOnRefreshListener(() -> webview.reload());
 
     }
 
@@ -97,7 +93,13 @@ public class ViewArticleActivity extends AppCompatActivity {
 
         switch (item.getItemId()) {
             case R.id.menu_analyze:
-                Toast.makeText(this, "menu_analyze", Toast.LENGTH_SHORT).show();
+
+                if (isValid(url)) {
+                    ClassificationDialog dialog = new ClassificationDialog(ViewArticleActivity.this, url);
+                    dialog.show();
+                } else {
+                    Toast.makeText(ViewArticleActivity.this, "Invalid URL", Toast.LENGTH_SHORT).show();
+                }
                 //put code to open dialog bo;x to display analysis
                 return true;
             case R.id.menu_share:
@@ -108,9 +110,9 @@ public class ViewArticleActivity extends AppCompatActivity {
                 sendIntent.setType("text/plain");
                 try {
                     startActivity(sendIntent);
-                } catch (ActivityNotFoundException e){
+                } catch (ActivityNotFoundException e) {
                     Toast.makeText(ViewArticleActivity.this, "There are no browsers installed.", Toast.LENGTH_SHORT).show();
-                } catch(Exception e){
+                } catch (Exception e) {
                     Toast.makeText(this, "There are no browsers installed.", Toast.LENGTH_SHORT).show();
                 }
 
@@ -121,9 +123,9 @@ public class ViewArticleActivity extends AppCompatActivity {
                 browserIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 try {
                     startActivity(browserIntent);
-                } catch (ActivityNotFoundException e){
+                } catch (ActivityNotFoundException e) {
                     Toast.makeText(this, "There are no browsers installed.", Toast.LENGTH_SHORT).show();
-                } catch(Exception e){
+                } catch (Exception e) {
                     Toast.makeText(this, "There are no browsers installed.", Toast.LENGTH_SHORT).show();
                 }
                 return true;
@@ -136,6 +138,20 @@ public class ViewArticleActivity extends AppCompatActivity {
     public boolean onSupportNavigateUp() {
         onBackPressed();
         return true;
+    }
+
+    private boolean isValid(String url) {
+        /* Try creating a valid URL */
+        try {
+            new URL(url).toURI();
+            return true;
+        }
+
+        // If there was an Exception
+        // while creating URL object
+        catch (Exception e) {
+            return false;
+        }
     }
 
 

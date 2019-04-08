@@ -4,118 +4,142 @@
     android:layout_height="match_parent"
     android:fillViewport="true">
 
-    <RelativeLayout
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <TextView
-            android:id="@+id/classificationTitle"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginEnd="10dp"
-            android:layout_marginBottom="30dp"
-            android:gravity="center"
-            android:text="@string/classification_results"
-            android:textColor="@color/color_black"
-            android:textSize="27sp"
-            android:textStyle="bold" />
+        <ProgressBar
+            android:id="@+id/classification_progress"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:indeterminateTint="@color/color_blue"
+            android:visibility="visible" />
 
         <RelativeLayout
+            android:id="@+id/classification_body"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/classificationTitle"
-            android:orientation="vertical">
+            android:visibility="gone">
 
             <TextView
-                android:id="@+id/clickbaitLabel"
+                android:id="@+id/classificationTitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_alignParentTop="true"
+                android:layout_marginStart="10dp"
                 android:layout_marginTop="20dp"
-                android:layout_marginBottom="20dp"
+                android:layout_marginEnd="10dp"
                 android:gravity="center"
-                android:text="@string/clickbait"
+                android:text="@string/classification_results"
                 android:textColor="@color/color_black"
-                android:textSize="20sp"
+                android:textSize="27sp"
                 android:textStyle="bold" />
 
-            <com.github.mikephil.charting.charts.PieChart
-                android:id="@+id/clickBaitChart"
+            <View
+                android:id="@+id/classification_separator"
                 android:layout_width="match_parent"
-                android:layout_height="300dp"
-                android:layout_below="@id/clickbaitLabel" />
-
-            <TextView
-                android:id="@+id/sentimentLabel"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/clickBaitChart"
+                android:layout_height="1dp"
+                android:layout_below="@id/classificationTitle"
+                android:layout_marginStart="30dp"
                 android:layout_marginTop="20dp"
+                android:layout_marginEnd="30dp"
                 android:layout_marginBottom="20dp"
-                android:gravity="center"
-                android:text="@string/sentiment"
-                android:textColor="@color/color_black"
-                android:textSize="20sp"
-                android:textStyle="bold" />
+                android:background="@color/color_grey" />
 
-            <com.github.mikephil.charting.charts.PieChart
-                android:id="@+id/sentimentChart"
-                android:layout_width="match_parent"
-                android:layout_height="300dp"
-                android:layout_below="@id/sentimentLabel" />
-
-            <TextView
-                android:id="@+id/writingLabel"
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/sentimentChart"
-                android:layout_marginTop="20dp"
-                android:layout_marginBottom="20dp"
-                android:gravity="center"
-                android:text="@string/writing_style"
-                android:textColor="@color/color_black"
-                android:textSize="20sp"
-                android:textStyle="bold" />
+                android:layout_below="@id/classification_separator"
+                android:orientation="vertical">
 
-            <com.github.mikephil.charting.charts.PieChart
-                android:id="@+id/writingChart"
-                android:layout_width="match_parent"
-                android:layout_height="300dp"
-                android:layout_below="@id/writingLabel" />
+                <TextView
+                    android:id="@+id/clickbaitLabel"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="20dp"
+                    android:gravity="center"
+                    android:text="@string/clickbait"
+                    android:textColor="@color/color_black"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
 
-            <TextView
-                android:id="@+id/factCheckLabel"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/writingChart"
-                android:layout_marginTop="20dp"
-                android:layout_marginBottom="20dp"
-                android:gravity="center"
-                android:text="@string/fact_checking"
-                android:textColor="@color/color_black"
-                android:textSize="20sp"
-                android:textStyle="bold" />
+                <com.github.mikephil.charting.charts.PieChart
+                    android:id="@+id/clickBaitChart"
+                    android:layout_width="match_parent"
+                    android:layout_height="300dp"
+                    android:layout_below="@id/clickbaitLabel" />
 
-            <com.github.mikephil.charting.charts.PieChart
-                android:id="@+id/factCheckChart"
-                android:layout_width="match_parent"
-                android:layout_height="300dp"
-                android:layout_below="@id/factCheckLabel" />
+                <TextView
+                    android:id="@+id/sentimentLabel"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/clickBaitChart"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="20dp"
+                    android:gravity="center"
+                    android:text="@string/sentiment"
+                    android:textColor="@color/color_black"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
 
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/classification_close"
-                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/factCheckChart"
-                android:layout_margin="20dp"
-                android:gravity="center"
-                android:text="@string/close" />
+                <com.github.mikephil.charting.charts.PieChart
+                    android:id="@+id/sentimentChart"
+                    android:layout_width="match_parent"
+                    android:layout_height="300dp"
+                    android:layout_below="@id/sentimentLabel" />
 
+                <TextView
+                    android:id="@+id/writingLabel"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/sentimentChart"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="20dp"
+                    android:gravity="center"
+                    android:text="@string/writing_style"
+                    android:textColor="@color/color_black"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+                <com.github.mikephil.charting.charts.PieChart
+                    android:id="@+id/writingChart"
+                    android:layout_width="match_parent"
+                    android:layout_height="300dp"
+                    android:layout_below="@id/writingLabel" />
+
+                <TextView
+                    android:id="@+id/factCheckLabel"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/writingChart"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="20dp"
+                    android:gravity="center"
+                    android:text="@string/fact_checking"
+                    android:textColor="@color/color_black"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+                <com.github.mikephil.charting.charts.PieChart
+                    android:id="@+id/factCheckChart"
+                    android:layout_width="match_parent"
+                    android:layout_height="300dp"
+                    android:layout_below="@id/factCheckLabel" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/classification_close"
+                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/factCheckChart"
+                    android:layout_margin="20dp"
+                    android:gravity="center"
+                    android:text="@string/close" />
+
+            </RelativeLayout>
         </RelativeLayout>
-    </RelativeLayout>
-
+    </FrameLayout>
 
 </ScrollView>

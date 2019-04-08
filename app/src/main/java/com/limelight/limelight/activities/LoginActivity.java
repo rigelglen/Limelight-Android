@@ -4,13 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Bitmap;
-import android.graphics.Canvas;
-import android.graphics.Color;
 import android.graphics.drawable.AnimationDrawable;
-import android.graphics.drawable.Drawable;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -23,12 +17,10 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.limelight.limelight.R;
-import com.limelight.limelight.core.Const;
 import com.limelight.limelight.core.RetrofitClient;
 import com.limelight.limelight.models.ErrorModel;
 import com.limelight.limelight.models.User;
@@ -40,17 +32,12 @@ import java.util.regex.Pattern;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.ContextCompat;
 import br.com.simplepass.loadingbutton.customViews.CircularProgressButton;
 import cn.pedant.SweetAlert.SweetAlertDialog;
 import kotlin.Unit;
-import okhttp3.OkHttpClient;
-import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 public class LoginActivity extends AppCompatActivity {
     private AnimationDrawable animationDrawable;
@@ -103,16 +90,16 @@ public class LoginActivity extends AppCompatActivity {
             TextInputEditText userName = findViewById(R.id.userName);
             TextInputEditText userPassword = findViewById(R.id.userPassword);
             String user = null;
-            if(userName.getText()!=null)
+            if (userName.getText() != null)
                 user = userName.getText().toString().trim();
             HashMap<String, String> map = new HashMap<>();
 
 
-            if (user!=null && !user.isEmpty() && isValid(user)) {
-                String pass=null;
-                if(userPassword.getText()!=null)
+            if (user != null && !user.isEmpty() && isValid(user)) {
+                String pass = null;
+                if (userPassword.getText() != null)
                     pass = userPassword.getText().toString();
-                if (pass!=null && !pass.isEmpty()) {
+                if (pass != null && !pass.isEmpty()) {
 
                     map.put("email", user);
                     map.put("password", pass);
@@ -120,13 +107,13 @@ public class LoginActivity extends AppCompatActivity {
                     registerBtn.setEnabled(false);
                     Call<User> call = api.authenticateUser(map);
                     hideKeyboard(LoginActivity.this);
-                    userLoginButton.startAnimation(()-> Unit.INSTANCE);
+                    userLoginButton.startAnimation(() -> Unit.INSTANCE);
                     call.enqueue(new Callback<User>() {
                         @Override
                         public void onResponse(@NonNull Call<User> call, @NonNull Response<User> response) {
                             userLoginButton.setEnabled(true);
                             registerBtn.setEnabled(true);
-                            userLoginButton.revertAnimation(()->Unit.INSTANCE);
+                            userLoginButton.revertAnimation(() -> Unit.INSTANCE);
                             if (response.body() != null && response.isSuccessful()) {
                                 String token = response.body().getToken();
                                 Log.i("abc", token);
@@ -162,21 +149,19 @@ public class LoginActivity extends AppCompatActivity {
 
                         @Override
                         public void onFailure(@NonNull Call<User> call, @NonNull Throwable t) {
-                            userLoginButton.revertAnimation(()-> Unit.INSTANCE);
+                            userLoginButton.revertAnimation(() -> Unit.INSTANCE);
                             userLoginButton.setEnabled(true);
                             registerBtn.setEnabled(true);
                             Log.i("abc", "ERROR");
                             Log.i("cdf", t.toString());
 
-                            SweetAlertDialog pDialog=new SweetAlertDialog(LoginActivity.this, SweetAlertDialog.ERROR_TYPE)
+                            SweetAlertDialog pDialog = new SweetAlertDialog(LoginActivity.this, SweetAlertDialog.ERROR_TYPE)
                                     .setTitleText("Error")
                                     .setContentText("No internet connection");
                             pDialog.show();
                         }
 
                     });
-
-
 
 
                 } else {
@@ -206,13 +191,13 @@ public class LoginActivity extends AppCompatActivity {
         return pat.matcher(email).matches();
     }
 
-    public static void hideKeyboard( Activity activity ) {
-        InputMethodManager imm = (InputMethodManager)activity.getSystemService( Context.INPUT_METHOD_SERVICE );
+    public static void hideKeyboard(Activity activity) {
+        InputMethodManager imm = (InputMethodManager) activity.getSystemService(Context.INPUT_METHOD_SERVICE);
         View f = activity.getCurrentFocus();
-        if( null != f && null != f.getWindowToken() && EditText.class.isAssignableFrom( f.getClass() ) )
-            imm.hideSoftInputFromWindow( f.getWindowToken(), 0 );
+        if (null != f && null != f.getWindowToken() && EditText.class.isAssignableFrom(f.getClass()))
+            imm.hideSoftInputFromWindow(f.getWindowToken(), 0);
         else
-            activity.getWindow().setSoftInputMode( WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN );
+            activity.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
     }
 
 //    public boolean isConnected(Context context) {

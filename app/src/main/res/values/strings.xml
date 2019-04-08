@@ -19,17 +19,14 @@
 
     <string name="tab_1">For You</string>
     <string name="tab_2">Headlines</string>
-    <string name="tab_3">Classify</string>
+    <string name="tab_3">Analyze</string>
     <string name="tab_4">Profile</string>
 
     <string name="color_blue">#2196F3</string>
     <string name="color_black">#000</string>
 
-
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="article_thumbnail">Article Thumbnail</string>
-    <string name="classify_article">CLASSIFY ARTICLE</string>
+    <string name="classify_article">ANALYZE ARTICLE</string>
     <string name="enter_url">Enter URL</string>
     <string name="view_in_browser">View in Browser</string>
     <string name="share">Share</string>
@@ -47,7 +44,11 @@
     <string name="writing_style">WRITING STYLE</string>
     <string name="fact_checking">FACT CHECKING</string>
     <string name="close">CLOSE</string>
-    <string name="classification_results">CLASSIFICATION RESULTS</string>
+    <string name="classification_results">ANALYSIS RESULTS</string>
+    <string name="main_activity">Main Activity</string>
+    <string name="search_button_desc">Search Button</string>
+    <string name="suggested_topics">Suggested Topics</string>
+    <string name="source_placeholder">SOME SOURCE</string>
 
 
 </resources>

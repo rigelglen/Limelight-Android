@@ -51,6 +51,7 @@
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/usernameWrapper"
+                style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.Dense"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
@@ -59,7 +60,6 @@
                 android:background="@drawable/round_edit_text"
                 android:paddingTop="5dp"
                 android:paddingBottom="10dp"
-                style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.Dense"
                 app:boxBackgroundMode="none">
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -90,6 +90,7 @@
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/passwordWrapper"
+                style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.Dense"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/usernameErrorText"
@@ -100,7 +101,6 @@
                 android:background="@drawable/round_edit_text"
                 android:paddingTop="5dp"
                 android:paddingBottom="12dp"
-                style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.Dense"
                 app:boxBackgroundMode="none">
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -119,6 +119,7 @@
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/confirmPasswordWrapper"
+                style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.Dense"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/passwordWrapper"
@@ -127,7 +128,6 @@
                 android:background="@drawable/round_edit_text"
                 android:paddingTop="5dp"
                 android:paddingBottom="12dp"
-                style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.Dense"
                 app:boxBackgroundMode="none">
 
                 <com.google.android.material.textfield.TextInputEditText
