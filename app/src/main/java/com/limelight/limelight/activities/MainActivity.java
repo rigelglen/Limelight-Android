@@ -124,11 +124,12 @@ public class MainActivity extends AppCompatActivity {
         return false;
     }
 
-    public void logout() {
+    private void logout() {
         editor = sharedPref.edit();
         editor.clear();
         editor.apply();
         Intent i = new Intent(this, LoginActivity.class);
+        i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(i);
         finish();
     }

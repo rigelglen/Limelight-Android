@@ -2,6 +2,7 @@ package com.limelight.limelight.network;
 
 import com.google.gson.JsonObject;
 import com.limelight.limelight.models.Article;
+import com.limelight.limelight.models.Category;
 import com.limelight.limelight.models.Topic;
 import com.limelight.limelight.models.User;
 
@@ -33,5 +34,8 @@ public interface Api {
 
     @POST("topic/removeFollow")
     Call<JsonObject> removeFollow(@Header("Authorization") String token, @Body HashMap<String, String> body);
+
+    @GET("feed/getFeedByCategory")
+    Call<Category> getFeedByCategory(@Header("Authorization") String token, @Query("categoryString") String categoryString,@Query("page") int page);
 
 }

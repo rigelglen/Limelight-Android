@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-   >
+    xmlns:tools="http://schemas.android.com/tools">
 
     <ImageButton
         android:id="@+id/backBtn"
@@ -27,19 +27,41 @@
         android:layout_marginTop="50dp"
         />
 
+   <Button
+       android:id="@+id/followButton"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:text="@string/follow"
+       android:layout_centerHorizontal="true"
+       android:layout_below="@+id/title"
+       android:background="@drawable/button_blue_round"
+       android:paddingStart="15dp"
+       android:paddingEnd="15dp"
+       android:paddingBottom="10dp"
+       android:paddingTop="10dp"
+       android:layout_marginBottom="10dp"
+       />
+
     <RelativeLayout
-        android:id="@+id/followOptionLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/title"
-        android:background="@color/color_grey"
+        android:layout_below="@+id/followButton"
         >
 
-        <TextView
+        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+            android:id="@+id/feedContainer"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="17sp"
-            />
+            android:layout_height="wrap_content">
+
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/feed_recycler"
+                android:scrollbars="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                tools:listitem="@layout/item_article"/>
+
+        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
     </RelativeLayout>
 </RelativeLayout>

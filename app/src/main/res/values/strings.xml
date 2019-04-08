@@ -41,6 +41,7 @@
     <string name="following">Following</string>
     <string name="topics">TOPICS</string>
     <string name="search_topic">Search Topic</string>
+    <string name="follow">Follow</string>
 
 
 </resources>
