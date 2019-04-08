@@ -1,132 +1,121 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="400dp"
-    android:layout_height="400dp"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     android:fillViewport="true">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        >
+        android:layout_height="wrap_content">
 
-        <LinearLayout
-            android:id="@+id/clickBaitChartLayout"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:orientation="vertical"
-            android:weightSum="2"
-            app:layout_constraintEnd_toStartOf="@id/sentimentChartLayout"
-            app:layout_constraintHeight_percent="0.4"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintWidth_percent="0.5">
+        <TextView
+            android:id="@+id/classificationTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="30dp"
+            android:gravity="center"
+            android:text="@string/classification_results"
+            android:textColor="@color/color_black"
+            android:textSize="27sp"
+            android:textStyle="bold" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/classificationTitle"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/clickbaitLabel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="20dp"
+                android:gravity="center"
+                android:text="@string/clickbait"
+                android:textColor="@color/color_black"
+                android:textSize="20sp"
+                android:textStyle="bold" />
 
             <com.github.mikephil.charting.charts.PieChart
                 android:id="@+id/clickBaitChart"
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1.75" />
+                android:layout_height="300dp"
+                android:layout_below="@id/clickbaitLabel" />
 
             <TextView
+                android:id="@+id/sentimentLabel"
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="0.25"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/clickBaitChart"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="20dp"
                 android:gravity="center"
-                android:text="@string/clickbait"
-                android:textColor="@color/color_black" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/sentimentChartLayout"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:orientation="vertical"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHeight_percent="0.4"
-            app:layout_constraintStart_toEndOf="@id/clickBaitChartLayout"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintWidth_percent="0.5">
+                android:text="@string/sentiment"
+                android:textColor="@color/color_black"
+                android:textSize="20sp"
+                android:textStyle="bold" />
 
             <com.github.mikephil.charting.charts.PieChart
                 android:id="@+id/sentimentChart"
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1.75" />
+                android:layout_height="300dp"
+                android:layout_below="@id/sentimentLabel" />
 
             <TextView
+                android:id="@+id/writingLabel"
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="0.25"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/sentimentChart"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="20dp"
                 android:gravity="center"
-                android:text="@string/sentiment"
-                android:textColor="@color/color_black" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/writingChartLayout"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:orientation="vertical"
-            app:layout_constraintHeight_percent="0.4"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/clickBaitChartLayout"
-            app:layout_constraintWidth_percent="0.5">
+                android:text="@string/writing_style"
+                android:textColor="@color/color_black"
+                android:textSize="20sp"
+                android:textStyle="bold" />
 
             <com.github.mikephil.charting.charts.PieChart
                 android:id="@+id/writingChart"
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1.75" />
+                android:layout_height="300dp"
+                android:layout_below="@id/writingLabel" />
 
             <TextView
+                android:id="@+id/factCheckLabel"
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="0.25"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/writingChart"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="20dp"
                 android:gravity="center"
-                android:text="@string/writing_style"
-                android:textColor="@color/color_black" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/factCheckChartLayout"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:orientation="vertical"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHeight_percent="0.4"
-            app:layout_constraintStart_toEndOf="@+id/writingChartLayout"
-            app:layout_constraintTop_toBottomOf="@+id/sentimentChartLayout"
-            app:layout_constraintWidth_percent="0.5">
+                android:text="@string/fact_checking"
+                android:textColor="@color/color_black"
+                android:textSize="20sp"
+                android:textStyle="bold" />
 
             <com.github.mikephil.charting.charts.PieChart
                 android:id="@+id/factCheckChart"
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1.75" />
+                android:layout_height="300dp"
+                android:layout_below="@id/factCheckLabel" />
 
-            <TextView
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/classification_close"
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="0.25"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/factCheckChart"
+                android:layout_margin="20dp"
                 android:gravity="center"
-                android:text="@string/fact_checking"
-                android:textColor="@color/color_black" />
-        </LinearLayout>
+                android:text="@string/close" />
 
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/close"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"/>
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
+        </RelativeLayout>
+    </RelativeLayout>
 
 
 </ScrollView>
-

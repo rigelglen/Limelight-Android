@@ -42,11 +42,12 @@
     <string name="topics">TOPICS</string>
     <string name="search_topic">Search Topic</string>
     <string name="follow">Follow</string>
-    <string name="clickbait">Clickbait</string>
-    <string name="sentiment">Sentiment</string>
-    <string name="writing_style">Writing Style</string>
-    <string name="fact_checking">Fact Checking</string>
+    <string name="clickbait">CLICKBAIT</string>
+    <string name="sentiment">SENTIMENT</string>
+    <string name="writing_style">WRITING STYLE</string>
+    <string name="fact_checking">FACT CHECKING</string>
     <string name="close">CLOSE</string>
+    <string name="classification_results">CLASSIFICATION RESULTS</string>
 
 
 </resources>
