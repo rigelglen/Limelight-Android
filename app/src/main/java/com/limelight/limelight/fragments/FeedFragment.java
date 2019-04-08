@@ -111,6 +111,7 @@ public class FeedFragment extends Fragment {
         editor.clear();
         editor.apply();
         Intent i = new Intent(getActivity(), LoginActivity.class);
+        i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(i);
         getActivity().finish();
     }
