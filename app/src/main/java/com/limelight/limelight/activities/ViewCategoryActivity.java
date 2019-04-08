@@ -42,38 +42,30 @@ public class ViewCategoryActivity extends AppCompatActivity {
     private SharedPreferences sharedPref;
     private SwipeRefreshLayout swipeContainer;
     private RecyclerView.Adapter mAdapter;
-    private Category category;
     private int page=1;
+    String token;
+    String titleText;
+    ArrayList<Article> articlesList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_category);
-        String t = "";
+        titleText = "";
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
-            t = extras.getString("cat");
+            titleText = extras.getString("cat");
             title=findViewById(R.id.title);
-            title.setText(t);
+            title.setText(titleText);
         }
 
         followButton=findViewById(R.id.followButton);
         followButton.setVisibility(View.GONE);
 
         backBtn = findViewById(R.id.backBtn);
-        backBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
+        backBtn.setOnClickListener(v -> finish());
 
-
-        ArrayList<Article> articlesList = new ArrayList<>();
-        category = new Category(articlesList, false);
-
-
-
+        articlesList = new ArrayList<>();
 
         swipeContainer = findViewById(R.id.feedContainer);
         RecyclerView recyclerView = findViewById(R.id.feed_recycler);
@@ -82,7 +74,7 @@ public class ViewCategoryActivity extends AppCompatActivity {
 
 
         sharedPref = getSharedPreferences("limelight", Context.MODE_PRIVATE);
-        String token="";
+        token="";
         if (sharedPref.contains("token")) {
             //get token from sharedprefs
             token = "Bearer " + sharedPref.getString("token", "");
@@ -99,41 +91,28 @@ public class ViewCategoryActivity extends AppCompatActivity {
 
         RecyclerViewClickListener listener = (v, position) -> {
             Intent i = new Intent(ViewCategoryActivity.this, ViewArticleActivity.class);
-            i.putExtra("url", category.getArticles().get(position).getLink());
+            i.putExtra("url", articlesList.get(position).getLink());
             startActivity(i);
         };
 
-        mAdapter = new FeedAdapter(category.getArticles(), listener);
+        mAdapter = new FeedAdapter(articlesList, listener);
         recyclerView.setAdapter(mAdapter);
         mAdapter.notifyDataSetChanged();
 
 
-
-
-
         if(!token.equals("")&&token!=null)
         {
-            loadArticles(token,t,page,this);
+            loadArticles(token,titleText,page,this);
 
         } else {
             logout();
         }
 
 
-
-
-//        swipeContainer.setOnRefreshListener(() -> {
-//            model.getArticles(token, page, getActivity(), true, false).observe(this, articleList -> {
-//                page = 1;
-//                feedArticles.clear();
-//                feedArticles.addAll(articleList);
-//                mAdapter.notifyDataSetChanged();
-//                swipeContainer.setRefreshing(false);
-//            });
-//        });
-
-
-
+        swipeContainer.setOnRefreshListener(() -> {
+            articlesList.clear();
+            loadArticles(token, titleText, page,this);
+        });
 
 
 //        if(category!=null){
@@ -175,8 +154,8 @@ public class ViewCategoryActivity extends AppCompatActivity {
             @Override
             public void onResponse(@NonNull Call<Category> call, @NonNull Response<Category> response) {
                 if (response.body() != null && response.isSuccessful()) {
-
-                    category = new Category(response.body().getArticles(), response.body().isFollowing());
+                    articlesList.addAll(response.body().getArticles());
+//                    category = new Category(response.body().getArticles(), response.body().isFollowing());
                     swipeContainer.setRefreshing(false);
                     mAdapter.notifyDataSetChanged();
 
