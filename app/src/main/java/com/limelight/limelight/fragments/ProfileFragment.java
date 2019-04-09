@@ -54,13 +54,23 @@ public class ProfileFragment extends Fragment {
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        sharedPref = getActivity().getSharedPreferences("limelight", Context.MODE_PRIVATE);
+
+        if (sharedPref.contains("token")) {
+            //get token from sharedprefs
+            token = "Bearer " + sharedPref.getString("token", "");
+            Log.i("token11", token);
+        } else {
+            //go to login activity
+            logout();
+        }
+        model.getTopics(token, getActivity(), true);
         return inflater.inflate(R.layout.fragment_profile, container, false);
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        sharedPref = getActivity().getSharedPreferences("limelight", Context.MODE_PRIVATE);
 
         logoutButton = view.findViewById(R.id.logoutButton);
         //logic for logout
