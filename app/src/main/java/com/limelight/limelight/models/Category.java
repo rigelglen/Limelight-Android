@@ -4,11 +4,13 @@ import java.util.ArrayList;
 
 public class Category {
     private ArrayList<Article> articles;
-    private boolean isFollowing;
+    private boolean isFollow;
+    private String id;
 
-    public Category(ArrayList<Article> articles, boolean isFollowing) {
+    public Category(ArrayList<Article> articles, boolean isFollow, String id) {
         this.articles = articles;
-        this.isFollowing = isFollowing;
+        this.isFollow = isFollow;
+        this.id=id;
     }
 
     public ArrayList<Article> getArticles() {
@@ -19,11 +21,19 @@ public class Category {
         this.articles = articles;
     }
 
-    public boolean isFollowing() {
-        return isFollowing;
+    public boolean isFollow() {
+        return isFollow;
     }
 
-    public void setFollowing(boolean following) {
-        isFollowing = following;
+    public void setFollow(boolean following) {
+        isFollow = following;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 }

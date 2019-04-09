@@ -34,9 +34,13 @@ public interface Api {
     @POST("topic/removeFollow")
     Call<JsonObject> removeFollow(@Header("Authorization") String token, @Body HashMap<String, String> body);
 
+    @POST("topic/addFollow")
+    Call<JsonObject> addFollow(@Header("Authorization") String token, @Body HashMap<String, String> body);
+
     @GET("feed/getFeedByCategory")
     Call<Category> getFeedByCategory(@Header("Authorization") String token, @Query("categoryString") String categoryString, @Query("page") int page);
 
     @GET("ml/getClassification")
     Call<ClassificationReport> getClassificationReport(@Header("Authorization") String token, @Query("url") String url);
+
 }

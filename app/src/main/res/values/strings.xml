@@ -39,6 +39,7 @@
     <string name="topics">TOPICS</string>
     <string name="search_topic">Search Topic</string>
     <string name="follow">Follow</string>
+    <string name="unfollow">Unfollow</string>
     <string name="clickbait">CLICKBAIT</string>
     <string name="sentiment">SENTIMENT</string>
     <string name="writing_style">WRITING STYLE</string>

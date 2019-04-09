@@ -13,6 +13,7 @@ import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.google.gson.JsonObject;
 import com.limelight.limelight.R;
 import com.limelight.limelight.adapters.FeedAdapter;
 import com.limelight.limelight.core.RetrofitClient;
@@ -24,6 +25,7 @@ import com.limelight.limelight.network.Api;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -46,6 +48,8 @@ public class ViewCategoryActivity extends AppCompatActivity {
     String token;
     String titleText;
     ArrayList<Article> articlesList;
+    boolean isFollowed = false;
+    private String id="";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -121,6 +125,37 @@ public class ViewCategoryActivity extends AppCompatActivity {
 //            swipeContainer.setRefreshing(false);
 //        }
 
+        if(isFollowed){
+            followButton.setText(R.string.unfollow);
+
+        } else {
+            followButton.setText(R.string.follow);
+        }
+
+        followButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                followButton.setEnabled(false);
+                if(isFollowed){
+                    //call method to unfollow the category
+                    unfollow();
+
+                } else {
+                    //call function to follow the category
+                    follow();
+                }
+
+                isFollowed=!isFollowed;
+                if(isFollowed){
+                    followButton.setText(R.string.unfollow);
+                    //call unfollow
+                } else {
+                    followButton.setText(R.string.follow);
+                }
+            }
+        });
+
+
 
     }
 
@@ -148,6 +183,16 @@ public class ViewCategoryActivity extends AppCompatActivity {
             public void onResponse(@NonNull Call<Category> call, @NonNull Response<Category> response) {
                 if (response.body() != null && response.isSuccessful()) {
                     articlesList.addAll(response.body().getArticles());
+                    followButton.setVisibility(View.VISIBLE);
+                    isFollowed=response.body().isFollow();
+                    Log.i("abcd", isFollowed + "hv");
+                    if(isFollowed){
+                        followButton.setText(R.string.unfollow);
+                        //call unfollow
+                    } else {
+                        followButton.setText(R.string.follow);
+                    }
+                    id=response.body().getId();
 //                    category = new Category(response.body().getArticles(), response.body().isFollowing());
                     swipeContainer.setRefreshing(false);
                     mAdapter.notifyDataSetChanged();
@@ -185,6 +230,133 @@ public class ViewCategoryActivity extends AppCompatActivity {
             }
 
         });
+    }
+
+
+
+    private void follow(){
+        HashMap<String, String> map = new HashMap<>();
+        map.put("topicString", titleText);
+        Api api = RetrofitClient.getInstance().getApiService();
+        Call<JsonObject> call = api.addFollow(token, map);
+
+
+        call.enqueue(new Callback<JsonObject>() {
+            @Override
+            public void onResponse(@NonNull Call<JsonObject> call, @NonNull Response<JsonObject> response) {
+                if (response.body() != null && response.isSuccessful()) {
+
+                    //enable the button
+                    followButton.setEnabled(true);
+
+                } else if (response.errorBody() != null) {
+                    Gson gson = new GsonBuilder().create();
+                    ErrorModel mErrorModel;
+                    try {
+                        mErrorModel = gson.fromJson(response.errorBody().string(), ErrorModel.class);
+                        //Toast.makeText(getApplicationContext(), mErrorModel.getMessage(), Toast.LENGTH_LONG).show();
+                        new SweetAlertDialog(ViewCategoryActivity.this, SweetAlertDialog.ERROR_TYPE)
+                                .setTitleText("Error")
+                                .setContentText(mErrorModel.getMessage())
+                                .show();
+
+                        //logout();
+
+                    } catch (IOException e) {
+                        Toast.makeText(ViewCategoryActivity.this, "An error occurred", Toast.LENGTH_LONG).show();
+                    }
+                } else {
+                    Toast.makeText(ViewCategoryActivity.this, "An error occurred", Toast.LENGTH_LONG).show();
+                }
+                //enable the button
+                followButton.setEnabled(true);
+
+
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<JsonObject> call, @NonNull Throwable t) {
+
+                //enable the button
+                followButton.setEnabled(true);
+
+                SweetAlertDialog pDialog = new SweetAlertDialog(ViewCategoryActivity.this, SweetAlertDialog.ERROR_TYPE)
+                        .setTitleText("Error")
+                        .setContentText("No internet connection");
+                pDialog.show();
+            }
+
+        });
+
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+    private void unfollow(){
+        HashMap<String, String> map = new HashMap<>();
+        map.put("topicId", id);
+        Api api = RetrofitClient.getInstance().getApiService();
+        Call<JsonObject> call = api.removeFollow(token, map);
+
+
+        call.enqueue(new Callback<JsonObject>() {
+            @Override
+            public void onResponse(@NonNull Call<JsonObject> call, @NonNull Response<JsonObject> response) {
+                if (response.body() != null && response.isSuccessful()) {
+
+                    //enable the button
+                    followButton.setEnabled(true);
+
+                } else if (response.errorBody() != null) {
+                    Gson gson = new GsonBuilder().create();
+                    ErrorModel mErrorModel;
+                    try {
+                        mErrorModel = gson.fromJson(response.errorBody().string(), ErrorModel.class);
+                        //Toast.makeText(getApplicationContext(), mErrorModel.getMessage(), Toast.LENGTH_LONG).show();
+                        new SweetAlertDialog(ViewCategoryActivity.this, SweetAlertDialog.ERROR_TYPE)
+                                .setTitleText("Error")
+                                .setContentText(mErrorModel.getMessage())
+                                .show();
+
+                        //logout();
+
+                    } catch (IOException e) {
+                        Toast.makeText(ViewCategoryActivity.this, "An error occurred", Toast.LENGTH_LONG).show();
+                    }
+                } else {
+                    Toast.makeText(ViewCategoryActivity.this, "An error occurred", Toast.LENGTH_LONG).show();
+                }
+                //enable the button
+                followButton.setEnabled(true);
+
+
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<JsonObject> call, @NonNull Throwable t) {
+
+                //enable the button
+                followButton.setEnabled(true);
+
+                SweetAlertDialog pDialog = new SweetAlertDialog(ViewCategoryActivity.this, SweetAlertDialog.ERROR_TYPE)
+                        .setTitleText("Error")
+                        .setContentText("No internet connection");
+                pDialog.show();
+
+            }
+
+        });
+
     }
 
 
