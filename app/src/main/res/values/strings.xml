@@ -50,6 +50,7 @@
     <string name="search_button_desc">Search Button</string>
     <string name="suggested_topics">Suggested Topics</string>
     <string name="source_placeholder">SOME SOURCE</string>
+    <string name="click_to_follow">Keywords (Click to Follow)</string>
 
 
 </resources>

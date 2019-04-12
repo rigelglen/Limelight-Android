@@ -4,6 +4,7 @@ import com.google.gson.JsonObject;
 import com.limelight.limelight.models.Article;
 import com.limelight.limelight.models.Category;
 import com.limelight.limelight.models.ClassificationReport;
+import com.limelight.limelight.models.Keyword;
 import com.limelight.limelight.models.Topic;
 import com.limelight.limelight.models.User;
 
@@ -39,6 +40,12 @@ public interface Api {
 
     @GET("feed/getFeedByCategory")
     Call<Category> getFeedByCategory(@Header("Authorization") String token, @Query("categoryString") String categoryString, @Query("page") int page);
+
+    @GET("feed/getFeedBySearch")
+    Call<ArrayList<Article>> getFeedBySearch(@Header("Authorization") String token,@Query("searchString") String searchString, @Query("page") int page );
+
+    @GET("ml/getKeywords")
+    Call<Keyword> getKeywords(@Header("Authorization") String token, @Query("text") String searchString);
 
     @GET("ml/getClassification")
     Call<ClassificationReport> getClassificationReport(@Header("Authorization") String token, @Query("url") String url);

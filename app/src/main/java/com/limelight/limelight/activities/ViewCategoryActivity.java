@@ -82,7 +82,7 @@ public class ViewCategoryActivity extends AppCompatActivity {
         if (sharedPref.contains("token")) {
             //get token from sharedprefs
             token = "Bearer " + sharedPref.getString("token", "");
-            Log.i("token11", token);
+
         } else {
             //go to login activity
             logout();
@@ -104,7 +104,7 @@ public class ViewCategoryActivity extends AppCompatActivity {
         mAdapter.notifyDataSetChanged();
 
 
-        if (!token.equals("") && token != null) {
+        if (!token.equals("")) {
             loadArticles(token, titleText, page, this);
 
         } else {
@@ -132,26 +132,23 @@ public class ViewCategoryActivity extends AppCompatActivity {
             followButton.setText(R.string.follow);
         }
 
-        followButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                followButton.setEnabled(false);
-                if(isFollowed){
-                    //call method to unfollow the category
-                    unfollow();
+        followButton.setOnClickListener(v -> {
+            followButton.setEnabled(false);
+            if(isFollowed){
+                //call method to unfollow the category
+                unfollow();
 
-                } else {
-                    //call function to follow the category
-                    follow();
-                }
+            } else {
+                //call function to follow the category
+                follow();
+            }
 
-                isFollowed=!isFollowed;
-                if(isFollowed){
-                    followButton.setText(R.string.unfollow);
-                    //call unfollow
-                } else {
-                    followButton.setText(R.string.follow);
-                }
+            isFollowed=!isFollowed;
+            if(isFollowed){
+                followButton.setText(R.string.unfollow);
+                //call unfollow
+            } else {
+                followButton.setText(R.string.follow);
             }
         });
 
@@ -216,13 +213,13 @@ public class ViewCategoryActivity extends AppCompatActivity {
                 } else {
                     Toast.makeText(ctx, "An error occurred", Toast.LENGTH_LONG).show();
                 }
-
+                swipeContainer.setRefreshing(false);
 
             }
 
             @Override
             public void onFailure(@NonNull Call<Category> call, @NonNull Throwable t) {
-
+                swipeContainer.setRefreshing(false);
                 SweetAlertDialog pDialog = new SweetAlertDialog(ctx, SweetAlertDialog.ERROR_TYPE)
                         .setTitleText("Error")
                         .setContentText("No internet connection");
