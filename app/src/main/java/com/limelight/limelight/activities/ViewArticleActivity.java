@@ -73,7 +73,7 @@ public class ViewArticleActivity extends AppCompatActivity {
             progressDialog.setMessage("Loading...");
             progressDialog.setCancelable(false);
             progressDialog.show();
-            webview.loadUrl("https://mercury.postlight.com/amp?url=" + url);
+            webview.loadUrl(url);
         } else {
             Toast.makeText(this, "An Error Occurred", Toast.LENGTH_SHORT).show();
         }

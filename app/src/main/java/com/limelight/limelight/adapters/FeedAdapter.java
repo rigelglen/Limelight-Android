@@ -45,8 +45,8 @@ public class FeedAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             viewHolder.articleTitle.setText(feedArticles.get(position).getTitle());
         if (feedArticles.get(position).getSource() != null)
             viewHolder.articleSource.setText(feedArticles.get(position).getSource());
-        if (feedArticles.get(position).getImage() != null)
-            Picasso.get().load(feedArticles.get(position).getImage()).placeholder(R.drawable.app_logo).into(viewHolder.articleThumb);
+
+        Picasso.get().load(feedArticles.get(position).getImage()).placeholder(R.drawable.app_logo).into(viewHolder.articleThumb);
 
         //click to read article
 

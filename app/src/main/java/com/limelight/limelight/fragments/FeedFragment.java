@@ -73,7 +73,8 @@ public class FeedFragment extends Fragment {
 
         model.getArticles(token, page, getActivity(), false, false).observe(this, articleList -> {
             feedArticles.clear();
-            feedArticles.addAll(articleList);
+            if (articleList != null)
+                feedArticles.addAll(articleList);
             mAdapter.notifyDataSetChanged();
             swipeContainer.setRefreshing(false);
         });
@@ -96,7 +97,8 @@ public class FeedFragment extends Fragment {
             model.getArticles(token, page, getActivity(), true, false).observe(this, articleList -> {
                 page = 1;
                 feedArticles.clear();
-                feedArticles.addAll(articleList);
+                if (articleList != null)
+                    feedArticles.addAll(articleList);
                 mAdapter.notifyDataSetChanged();
                 swipeContainer.setRefreshing(false);
             });

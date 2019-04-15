@@ -67,14 +67,15 @@ public class FeedViewModel extends ViewModel {
                                 .setTitleText("Error")
                                 .setContentText(mErrorModel.getMessage())
                                 .show();
-
-                        //logout();
+                        articleArrayList.setValue(articleArrayList.getValue());                        //logout();
 
                     } catch (IOException e) {
                         Toast.makeText(ctx, "An error occurred", Toast.LENGTH_LONG).show();
+                        articleArrayList.setValue(articleArrayList.getValue());
                     }
                 } else {
                     Toast.makeText(ctx, "An error occurred", Toast.LENGTH_LONG).show();
+                    articleArrayList.setValue(articleArrayList.getValue());
                 }
 
 
@@ -87,6 +88,7 @@ public class FeedViewModel extends ViewModel {
                         .setTitleText("Error")
                         .setContentText("No internet connection");
                 pDialog.show();
+                articleArrayList.setValue(articleArrayList.getValue());
             }
 
         });

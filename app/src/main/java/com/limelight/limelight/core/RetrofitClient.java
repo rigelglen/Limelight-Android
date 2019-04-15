@@ -4,6 +4,8 @@ import com.google.gson.GsonBuilder;
 import com.limelight.limelight.BuildConfig;
 import com.limelight.limelight.network.Api;
 
+import java.util.concurrent.TimeUnit;
+
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
@@ -21,7 +23,11 @@ public class RetrofitClient {
 
         HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
         logging.setLevel(HttpLoggingInterceptor.Level.BODY);
-        OkHttpClient.Builder httpClient = new OkHttpClient.Builder();
+        OkHttpClient.Builder httpClient = new OkHttpClient.Builder()
+                            .connectTimeout(1, TimeUnit.MINUTES)
+                            .readTimeout(1, TimeUnit.MINUTES);
+
+
 
         if (BuildConfig.DEBUG) {
             httpClient.addInterceptor(logging);

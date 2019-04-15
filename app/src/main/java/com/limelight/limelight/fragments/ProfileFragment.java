@@ -27,6 +27,7 @@ import com.limelight.limelight.viewmodel.TopicViewModel;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 
 import androidx.annotation.NonNull;
@@ -119,73 +120,71 @@ public class ProfileFragment extends Fragment {
                     .setTitleText("Are you sure?")
                     .setContentText(text)
                     .setConfirmText("Confirm")
-                    .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
-                        @Override
-                        public void onClick(SweetAlertDialog sDialog) {
-                            sDialog.dismissWithAnimation();
-                            //make network request to remove the item
+                    .setConfirmClickListener(sDialog -> {
+                        sDialog.dismissWithAnimation();
+                        //make network request to remove the item
+
+                        HashMap<String, String> map = new HashMap<>();
+                        Log.i("topic", "Size is" + topics.size());
+                        Log.i("topic", "Topic is" + Arrays.toString(topics.toArray()));
+                        Log.i("topic", topics.get(position).toString());
+                        map.put("topicId", topics.get(position).getId());
+                        if (sharedPref.contains("token")) {
+                            //get token from sharedprefs
+                            token = "Bearer " + sharedPref.getString("token", "");
+                            Log.i("token11", token);
+                        } else {
+                            logout();
+                        }
+                        Api api = RetrofitClient.getInstance().getApiService();
+                        Call<JsonObject> call = api.removeFollow(token, map);
 
 
-                            HashMap<String, String> map = new HashMap<>();
-                            map.put("topicId", topics.get(position).getId());
-                            if (sharedPref.contains("token")) {
-                                //get token from sharedprefs
-                                token = "Bearer " + sharedPref.getString("token", "");
-                                Log.i("token11", token);
-                            } else {
-                                //go to login activity
-                                logout();
-                            }
-                            Api api = RetrofitClient.getInstance().getApiService();
-                            Call<JsonObject> call = api.removeFollow(token, map);
+                        call.enqueue(new Callback<JsonObject>() {
+                            @Override
+                            public void onResponse(@NonNull Call<JsonObject> call, @NonNull Response<JsonObject> response) {
+                                if (response.body() != null && response.isSuccessful()) {
+
+                                    topics.remove(position);
+                                    model.getTopics(token, getActivity(), true);
+                                    adapter.notifyDataSetChanged();
 
 
-                            call.enqueue(new Callback<JsonObject>() {
-                                @Override
-                                public void onResponse(@NonNull Call<JsonObject> call, @NonNull Response<JsonObject> response) {
-                                    if (response.body() != null && response.isSuccessful()) {
+                                } else if (response.errorBody() != null) {
+                                    Gson gson = new GsonBuilder().create();
+                                    ErrorModel mErrorModel;
+                                    try {
+                                        mErrorModel = gson.fromJson(response.errorBody().string(), ErrorModel.class);
+                                        //Toast.makeText(getApplicationContext(), mErrorModel.getMessage(), Toast.LENGTH_LONG).show();
+                                        new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
+                                                .setTitleText("Error")
+                                                .setContentText(mErrorModel.getMessage())
+                                                .show();
 
-                                        topics.remove(position);
-                                        model.getTopics(token, getActivity(), true);
-                                        adapter.notifyDataSetChanged();
+                                        //logout();
 
-
-                                    } else if (response.errorBody() != null) {
-                                        Gson gson = new GsonBuilder().create();
-                                        ErrorModel mErrorModel;
-                                        try {
-                                            mErrorModel = gson.fromJson(response.errorBody().string(), ErrorModel.class);
-                                            //Toast.makeText(getApplicationContext(), mErrorModel.getMessage(), Toast.LENGTH_LONG).show();
-                                            new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
-                                                    .setTitleText("Error")
-                                                    .setContentText(mErrorModel.getMessage())
-                                                    .show();
-
-                                            //logout();
-
-                                        } catch (IOException e) {
-                                            Toast.makeText(getContext(), "An error occurred", Toast.LENGTH_LONG).show();
-                                        }
-                                    } else {
+                                    } catch (IOException e) {
                                         Toast.makeText(getContext(), "An error occurred", Toast.LENGTH_LONG).show();
                                     }
-
-
+                                } else {
+                                    Toast.makeText(getContext(), "An error occurred", Toast.LENGTH_LONG).show();
                                 }
 
-                                @Override
-                                public void onFailure(@NonNull Call<JsonObject> call, @NonNull Throwable t) {
 
-                                    SweetAlertDialog pDialog = new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
-                                            .setTitleText("Error")
-                                            .setContentText("No internet connection");
-                                    pDialog.show();
-                                }
+                            }
 
-                            });
+                            @Override
+                            public void onFailure(@NonNull Call<JsonObject> call, @NonNull Throwable t) {
+
+                                SweetAlertDialog pDialog = new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
+                                        .setTitleText("Error")
+                                        .setContentText("No internet connection");
+                                pDialog.show();
+                            }
+
+                        });
 
 
-                        }
                     })
                     .show();
 
