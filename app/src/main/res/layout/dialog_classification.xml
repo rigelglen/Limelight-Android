@@ -46,55 +46,16 @@
                 android:layout_marginBottom="20dp"
                 android:background="@color/color_grey" />
 
-            <RelativeLayout
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/classification_separator"
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/clickbaitLabel"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentTop="true"
-                    android:layout_marginTop="20dp"
-                    android:layout_marginBottom="20dp"
-                    android:gravity="center"
-                    android:text="@string/clickbait"
-                    android:textColor="@color/color_black"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
-
-                <com.github.mikephil.charting.charts.PieChart
-                    android:id="@+id/clickBaitChart"
-                    android:layout_width="match_parent"
-                    android:layout_height="300dp"
-                    android:layout_below="@id/clickbaitLabel" />
-
-                <TextView
-                    android:id="@+id/sentimentLabel"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/clickBaitChart"
-                    android:layout_marginTop="20dp"
-                    android:layout_marginBottom="20dp"
-                    android:gravity="center"
-                    android:text="@string/sentiment"
-                    android:textColor="@color/color_black"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
-
-                <com.github.mikephil.charting.charts.PieChart
-                    android:id="@+id/sentimentChart"
-                    android:layout_width="match_parent"
-                    android:layout_height="300dp"
-                    android:layout_below="@id/sentimentLabel" />
-
-                <TextView
                     android:id="@+id/writingLabel"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/sentimentChart"
                     android:layout_marginTop="20dp"
                     android:layout_marginBottom="20dp"
                     android:gravity="center"
@@ -106,39 +67,71 @@
                 <com.github.mikephil.charting.charts.PieChart
                     android:id="@+id/writingChart"
                     android:layout_width="match_parent"
-                    android:layout_height="300dp"
-                    android:layout_below="@id/writingLabel" />
+                    android:layout_height="300dp"/>
 
                 <TextView
-                    android:id="@+id/factCheckLabel"
+                    android:id="@+id/clickbaitLabel"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/writingChart"
                     android:layout_marginTop="20dp"
                     android:layout_marginBottom="20dp"
                     android:gravity="center"
-                    android:text="@string/fact_checking"
+                    android:text="@string/clickbait"
                     android:textColor="@color/color_black"
                     android:textSize="20sp"
                     android:textStyle="bold" />
 
                 <com.github.mikephil.charting.charts.PieChart
-                    android:id="@+id/factCheckChart"
+                    android:id="@+id/clickBaitChart"
                     android:layout_width="match_parent"
-                    android:layout_height="300dp"
-                    android:layout_below="@id/factCheckLabel" />
+                    android:layout_height="300dp" />
+
+                <TextView
+                    android:id="@+id/sentimentLabel"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="20dp"
+                    android:gravity="center"
+                    android:text="@string/sentiment"
+                    android:textColor="@color/color_black"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+                <com.github.mikephil.charting.charts.PieChart
+                    android:id="@+id/sentimentChart"
+                    android:layout_width="match_parent"
+                    android:layout_height="300dp"/>
+
+                <!--<TextView-->
+                    <!--android:id="@+id/factCheckLabel"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_below="@id/writingChart"-->
+                    <!--android:layout_marginTop="20dp"-->
+                    <!--android:layout_marginBottom="20dp"-->
+                    <!--android:gravity="center"-->
+                    <!--android:text="@string/fact_checking"-->
+                    <!--android:textColor="@color/color_black"-->
+                    <!--android:textSize="20sp"-->
+                    <!--android:textStyle="bold" />-->
+
+                <!--<com.github.mikephil.charting.charts.PieChart-->
+                    <!--android:id="@+id/factCheckChart"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="300dp"-->
+                    <!--android:layout_below="@id/factCheckLabel" />-->
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/classification_close"
                     style="@style/Widget.MaterialComponents.Button.OutlinedButton"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/factCheckChart"
                     android:layout_margin="20dp"
                     android:gravity="center"
                     android:text="@string/close" />
 
-            </RelativeLayout>
+            </LinearLayout>
         </RelativeLayout>
     </FrameLayout>
 

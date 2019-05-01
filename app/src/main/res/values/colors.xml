@@ -31,4 +31,9 @@
     <color name="colorRed_A400">#f12711</color>
     <color name="colorRed_900">#f5af19</color>
     <!-- ./ 4th Gradient color -->
+
+    <color name="neg_res">#c62828</color>
+    <color name="neu_res">#1976d2</color>
+    <color name="pos_res">#388e3c</color>
+
 </resources>

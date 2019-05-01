@@ -5,6 +5,16 @@ public class ClassificationReport {
 
     private Clickbait clickbait;
 
+    private Writing writing;
+
+    public Writing getWriting() {
+        return writing;
+    }
+
+    public void setWriting(Writing writing) {
+        this.writing = writing;
+    }
+
     public Sentiment getSentiment() {
         return sentiment;
     }
