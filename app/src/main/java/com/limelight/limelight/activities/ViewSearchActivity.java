@@ -38,6 +38,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
+
 import cn.pedant.SweetAlert.SweetAlertDialog;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -116,7 +117,7 @@ public class ViewSearchActivity extends AppCompatActivity {
         RecyclerView keysListView = findViewById(R.id.keysListView);
 
         RecyclerViewClickListener listener2 = (v, position) -> {
-            String text = "Would you like to follow "+keywords.get(position)+"?";
+            String text = "Would you like to follow " + keywords.get(position) + "?";
             new SweetAlertDialog(this)
                     .setTitleText("Are you sure?")
                     .setContentText(text)
@@ -124,7 +125,7 @@ public class ViewSearchActivity extends AppCompatActivity {
                     .setCancelButton("No", Dialog::dismiss)
                     .setConfirmClickListener(sDialog -> {
                         sDialog.dismissWithAnimation();
-                        follow(keywords.get(position),position);
+                        follow(keywords.get(position), position);
                     }).show();
         };
 
@@ -134,7 +135,7 @@ public class ViewSearchActivity extends AppCompatActivity {
         keysListView.setAdapter(adapter);
         //keysListView.setAdapter(adapter);
 
-        if (!token.equals("") && token != null) {
+        if (!token.equals("")) {
             loadArticles(token, t, page, this);
             loadKeyWords(token, t, this);
 
@@ -223,7 +224,11 @@ public class ViewSearchActivity extends AppCompatActivity {
             public void onResponse(@NonNull Call<Keyword> call, @NonNull Response<Keyword> response) {
                 if (response.body() != null && response.isSuccessful()) {
                     keywords.addAll(response.body().getKeywords());
-                    keywordsLayout.setVisibility(View.VISIBLE);
+                    if (keywords.size() <= 0) {
+                        keywordsLayout.setVisibility(View.GONE);
+                    } else {
+                        keywordsLayout.setVisibility(View.VISIBLE);
+                    }
                     //swipeContainer.setRefreshing(false);
                     //mAdapter.notifyDataSetChanged();
 
@@ -267,8 +272,7 @@ public class ViewSearchActivity extends AppCompatActivity {
     }
 
 
-
-    private void follow(String topic,  int position){
+    private void follow(String topic, int position) {
         HashMap<String, String> map = new HashMap<>();
         map.put("topicString", topic);
         Api api = RetrofitClient.getInstance().getApiService();
@@ -283,6 +287,9 @@ public class ViewSearchActivity extends AppCompatActivity {
                     //enable the button
                     //followButton.setEnabled(true);
                     keywords.remove(position);
+                    if (keywords.size() <= 0) {
+                        keywordsLayout.setVisibility(View.GONE);
+                    }
                     adapter.notifyDataSetChanged();
 
                 } else if (response.errorBody() != null) {
@@ -297,7 +304,6 @@ public class ViewSearchActivity extends AppCompatActivity {
                                 .show();
 
 
-
                     } catch (IOException e) {
                         Toast.makeText(ViewSearchActivity.this, "An error occurred", Toast.LENGTH_LONG).show();
                     }
@@ -305,7 +311,6 @@ public class ViewSearchActivity extends AppCompatActivity {
                     Toast.makeText(ViewSearchActivity.this, "An error occurred", Toast.LENGTH_LONG).show();
                 }
                 //enable the button
-
 
 
             }
@@ -325,8 +330,6 @@ public class ViewSearchActivity extends AppCompatActivity {
 
 
     }
-
-
 
 
 }

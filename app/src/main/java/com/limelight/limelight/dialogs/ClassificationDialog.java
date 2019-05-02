@@ -12,6 +12,7 @@ import android.view.Window;
 import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.github.mikephil.charting.charts.Chart;
@@ -36,6 +37,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import androidx.annotation.NonNull;
+
 import cn.pedant.SweetAlert.SweetAlertDialog;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -56,6 +58,7 @@ public class ClassificationDialog extends Dialog {
     private List<PieEntry> entriesWrite;
     private ProgressBar classificationProgress;
     private RelativeLayout classificationBody;
+    private TextView disclaimerText, writingResultText, clickbaitResultText, sentimentResultText;
 
     public ClassificationDialog(Context ctx, String url) {
         super(ctx);
@@ -78,6 +81,11 @@ public class ClassificationDialog extends Dialog {
         //factCheckChart = findViewById(R.id.factCheckChart);
         classificationProgress = findViewById(R.id.classification_progress);
         classificationBody = findViewById(R.id.classification_body);
+
+        disclaimerText = findViewById(R.id.disclaimerText);
+        writingResultText = findViewById(R.id.writingResultText);
+        clickbaitResultText = findViewById(R.id.clickbaitResultText);
+        sentimentResultText = findViewById(R.id.sentimentResultText);
 
         sharedPref = ctx.getSharedPreferences("limelight", Context.MODE_PRIVATE);
         if (sharedPref.contains("token")) {
@@ -129,7 +137,7 @@ public class ClassificationDialog extends Dialog {
         entriesWrite.add(new PieEntry(80f, "Real"));
 
         PieDataSet setWrite = new PieDataSet(entriesWrite, "Article writing style results");
-        setWrite.setColors(ctx.getColor(R.color.pos_res),ctx.getColor(R.color.neg_res));
+        setWrite.setColors(ctx.getColor(R.color.pos_res), ctx.getColor(R.color.neg_res));
         setWrite.setValueTextColor(Color.WHITE);
         setWrite.setValueTextSize(20);
         PieData dataWrite = new PieData(setWrite);
@@ -153,6 +161,10 @@ public class ClassificationDialog extends Dialog {
                     Clickbait clickbait = response.body().getClickbait();
                     Sentiment sentiment = response.body().getSentiment();
                     Writing writing = response.body().getWriting();
+                    disclaimerText.setText(response.body().getDisclaimer());
+                    writingResultText.setText(writing.getMessage());
+                    sentimentResultText.setText(sentiment.getMessage());
+                    clickbaitResultText.setText(clickbait.getMessage());
 
                     entriesClickbait.clear();
                     entriesSenti.clear();
@@ -181,12 +193,8 @@ public class ClassificationDialog extends Dialog {
                     writingChart.invalidate(); // refresh
 
 
-
-
                     classificationProgress.setVisibility(View.GONE);
                     classificationBody.setVisibility(View.VISIBLE);
-
-
 
 
                 } else if (response.errorBody() != null) {

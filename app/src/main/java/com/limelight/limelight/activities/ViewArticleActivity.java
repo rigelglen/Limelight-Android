@@ -23,7 +23,6 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 public class ViewArticleActivity extends AppCompatActivity {
     private String url;
     private WebView webview;
-    private Toolbar toolbar;
     private SwipeRefreshLayout mySwipeRefreshLayout;
     private ProgressDialog progressDialog;
 
@@ -33,7 +32,7 @@ public class ViewArticleActivity extends AppCompatActivity {
         setContentView(R.layout.activity_view_article);
 
 
-        toolbar = findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
@@ -42,6 +41,7 @@ public class ViewArticleActivity extends AppCompatActivity {
         Intent intent = getIntent();
         url = intent.getExtras().getString("url", "");
         mySwipeRefreshLayout = findViewById(R.id.swipeContainer);
+        mySwipeRefreshLayout.setRefreshing(true);
         webview = findViewById(R.id.webview);
         webview.setWebViewClient(new WebViewClient() {
             @Override
@@ -52,9 +52,9 @@ public class ViewArticleActivity extends AppCompatActivity {
 
             @Override
             public void onPageFinished(WebView view, String url) {
-                if (progressDialog.isShowing()) {
-                    progressDialog.dismiss();
-                }
+//                if (progressDialog.isShowing()) {
+//                    progressDialog.dismiss();
+//                }
                 if (mySwipeRefreshLayout.isRefreshing()) {
                     mySwipeRefreshLayout.setRefreshing(false);
                 }
@@ -69,10 +69,10 @@ public class ViewArticleActivity extends AppCompatActivity {
 
         if (!url.equals("")) {
             //open the article in webview
-            progressDialog = new ProgressDialog(ViewArticleActivity.this, R.style.AlertDialogStyle);
-            progressDialog.setMessage("Loading...");
-            progressDialog.setCancelable(false);
-            progressDialog.show();
+//            progressDialog = new ProgressDialog(ViewArticleActivity.this, R.style.AlertDialogStyle);
+//            progressDialog.setMessage("Loading...");
+//            progressDialog.setCancelable(false);
+//            progressDialog.show();
             webview.loadUrl(url);
         } else {
             Toast.makeText(this, "An Error Occurred", Toast.LENGTH_SHORT).show();

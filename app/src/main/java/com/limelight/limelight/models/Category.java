@@ -10,7 +10,7 @@ public class Category {
     public Category(ArrayList<Article> articles, boolean isFollow, String id) {
         this.articles = articles;
         this.isFollow = isFollow;
-        this.id=id;
+        this.id = id;
     }
 
     public ArrayList<Article> getArticles() {

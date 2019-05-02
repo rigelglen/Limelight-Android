@@ -32,6 +32,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
+
 import cn.pedant.SweetAlert.SweetAlertDialog;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -49,7 +50,7 @@ public class ViewCategoryActivity extends AppCompatActivity {
     String titleText;
     ArrayList<Article> articlesList;
     boolean isFollowed = false;
-    private String id="";
+    private String id = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -125,7 +126,7 @@ public class ViewCategoryActivity extends AppCompatActivity {
 //            swipeContainer.setRefreshing(false);
 //        }
 
-        if(isFollowed){
+        if (isFollowed) {
             followButton.setText(R.string.unfollow);
 
         } else {
@@ -134,7 +135,7 @@ public class ViewCategoryActivity extends AppCompatActivity {
 
         followButton.setOnClickListener(v -> {
             followButton.setEnabled(false);
-            if(isFollowed){
+            if (isFollowed) {
                 //call method to unfollow the category
                 unfollow();
 
@@ -143,15 +144,14 @@ public class ViewCategoryActivity extends AppCompatActivity {
                 follow();
             }
 
-            isFollowed=!isFollowed;
-            if(isFollowed){
+            isFollowed = !isFollowed;
+            if (isFollowed) {
                 followButton.setText(R.string.unfollow);
                 //call unfollow
             } else {
                 followButton.setText(R.string.follow);
             }
         });
-
 
 
     }
@@ -181,15 +181,15 @@ public class ViewCategoryActivity extends AppCompatActivity {
                 if (response.body() != null && response.isSuccessful()) {
                     articlesList.addAll(response.body().getArticles());
                     followButton.setVisibility(View.VISIBLE);
-                    isFollowed=response.body().isFollow();
+                    isFollowed = response.body().isFollow();
                     Log.i("abcd", isFollowed + "hv");
-                    if(isFollowed){
+                    if (isFollowed) {
                         followButton.setText(R.string.unfollow);
                         //call unfollow
                     } else {
                         followButton.setText(R.string.follow);
                     }
-                    id=response.body().getId();
+                    id = response.body().getId();
 //                    category = new Category(response.body().getArticles(), response.body().isFollowing());
                     swipeContainer.setRefreshing(false);
                     mAdapter.notifyDataSetChanged();
@@ -230,8 +230,7 @@ public class ViewCategoryActivity extends AppCompatActivity {
     }
 
 
-
-    private void follow(){
+    private void follow() {
         HashMap<String, String> map = new HashMap<>();
         map.put("topicString", titleText);
         Api api = RetrofitClient.getInstance().getApiService();
@@ -289,17 +288,7 @@ public class ViewCategoryActivity extends AppCompatActivity {
     }
 
 
-
-
-
-
-
-
-
-
-
-
-    private void unfollow(){
+    private void unfollow() {
         HashMap<String, String> map = new HashMap<>();
         map.put("topicId", id);
         Api api = RetrofitClient.getInstance().getApiService();

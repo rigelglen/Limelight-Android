@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fillViewport="true">
@@ -53,6 +54,18 @@
                 android:orientation="vertical">
 
                 <TextView
+                    android:id="@+id/disclaimerText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="8dp"
+                    android:gravity="center"
+                    android:padding="5dp"
+                    android:textColor="@color/black"
+                    android:textSize="17sp"
+                    android:textStyle="bold"
+                    tools:text="Disclaimer Text " />
+
+                <TextView
                     android:id="@+id/writingLabel"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -67,7 +80,21 @@
                 <com.github.mikephil.charting.charts.PieChart
                     android:id="@+id/writingChart"
                     android:layout_width="match_parent"
-                    android:layout_height="300dp"/>
+                    android:layout_height="300dp" />
+
+                <TextView
+                    android:id="@+id/writingResultText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginBottom="12dp"
+                    android:gravity="center"
+                    android:padding="5dp"
+                    android:textColor="@color/black"
+                    android:textSize="18sp"
+                    tools:text="Writing Style result " />
 
                 <TextView
                     android:id="@+id/clickbaitLabel"
@@ -87,6 +114,20 @@
                     android:layout_height="300dp" />
 
                 <TextView
+                    android:id="@+id/clickbaitResultText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginBottom="12dp"
+                    android:gravity="center"
+                    android:padding="5dp"
+                    android:textColor="@color/black"
+                    android:textSize="18sp"
+                    tools:text="Clickbait result" />
+
+                <TextView
                     android:id="@+id/sentimentLabel"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -101,26 +142,40 @@
                 <com.github.mikephil.charting.charts.PieChart
                     android:id="@+id/sentimentChart"
                     android:layout_width="match_parent"
-                    android:layout_height="300dp"/>
+                    android:layout_height="300dp" />
+
+                <TextView
+                    android:id="@+id/sentimentResultText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginBottom="12dp"
+                    android:gravity="center"
+                    android:padding="5dp"
+                    android:textColor="@color/black"
+                    android:textSize="18sp"
+                    tools:text="Sentiment Result " />
 
                 <!--<TextView-->
-                    <!--android:id="@+id/factCheckLabel"-->
-                    <!--android:layout_width="match_parent"-->
-                    <!--android:layout_height="wrap_content"-->
-                    <!--android:layout_below="@id/writingChart"-->
-                    <!--android:layout_marginTop="20dp"-->
-                    <!--android:layout_marginBottom="20dp"-->
-                    <!--android:gravity="center"-->
-                    <!--android:text="@string/fact_checking"-->
-                    <!--android:textColor="@color/color_black"-->
-                    <!--android:textSize="20sp"-->
-                    <!--android:textStyle="bold" />-->
+                <!--android:id="@+id/factCheckLabel"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_below="@id/writingChart"-->
+                <!--android:layout_marginTop="20dp"-->
+                <!--android:layout_marginBottom="20dp"-->
+                <!--android:gravity="center"-->
+                <!--android:text="@string/fact_checking"-->
+                <!--android:textColor="@color/color_black"-->
+                <!--android:textSize="20sp"-->
+                <!--android:textStyle="bold" />-->
 
                 <!--<com.github.mikephil.charting.charts.PieChart-->
-                    <!--android:id="@+id/factCheckChart"-->
-                    <!--android:layout_width="match_parent"-->
-                    <!--android:layout_height="300dp"-->
-                    <!--android:layout_below="@id/factCheckLabel" />-->
+                <!--android:id="@+id/factCheckChart"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="300dp"-->
+                <!--android:layout_below="@id/factCheckLabel" />-->
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/classification_close"

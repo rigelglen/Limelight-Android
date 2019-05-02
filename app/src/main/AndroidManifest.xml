@@ -16,9 +16,11 @@
         android:usesCleartextTraffic="true"
         tools:ignore="AllowBackup"
         tools:replace="android:icon">
-        <activity android:name=".activities.ViewSearchActivity"></activity>
+        <activity android:name=".activities.ViewSearchActivity" />
         <activity android:name=".activities.ViewCategoryActivity" />
-        <activity android:name=".activities.ViewArticleActivity" />
+        <activity
+            android:name=".activities.ViewArticleActivity"
+            android:screenOrientation="portrait" />
 
         <uses-library
             android:name="org.apache.http.legacy"

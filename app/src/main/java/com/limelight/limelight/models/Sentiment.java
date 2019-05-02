@@ -9,6 +9,16 @@ public class Sentiment {
 
     private float compound;
 
+    private String message;
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
+
     public float getNegative() {
         return negative;
     }

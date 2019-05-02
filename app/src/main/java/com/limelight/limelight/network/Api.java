@@ -42,7 +42,7 @@ public interface Api {
     Call<Category> getFeedByCategory(@Header("Authorization") String token, @Query("categoryString") String categoryString, @Query("page") int page);
 
     @GET("feed/getFeedBySearch")
-    Call<ArrayList<Article>> getFeedBySearch(@Header("Authorization") String token,@Query("searchString") String searchString, @Query("page") int page );
+    Call<ArrayList<Article>> getFeedBySearch(@Header("Authorization") String token, @Query("searchString") String searchString, @Query("page") int page);
 
     @GET("ml/getKeywords")
     Call<Keyword> getKeywords(@Header("Authorization") String token, @Query("text") String searchString);

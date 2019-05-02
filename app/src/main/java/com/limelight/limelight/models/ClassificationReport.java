@@ -7,6 +7,16 @@ public class ClassificationReport {
 
     private Writing writing;
 
+    private String disclaimer;
+
+    public String getDisclaimer() {
+        return disclaimer;
+    }
+
+    public void setDisclaimer(String disclaimer) {
+        this.disclaimer = disclaimer;
+    }
+
     public Writing getWriting() {
         return writing;
     }

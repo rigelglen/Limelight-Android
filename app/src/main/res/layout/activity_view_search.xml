@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools">
+    android:layout_height="match_parent">
 
     <ImageButton
         android:id="@+id/backBtn"
@@ -29,11 +29,11 @@
         android:id="@+id/keywordsLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/layout_rounded"
+        android:layout_below="@+id/title"
         android:layout_marginStart="10dp"
         android:layout_marginEnd="10dp"
-        android:layout_below="@+id/title"
-        >
+        android:background="@drawable/layout_rounded">
+
         <TextView
             android:id="@+id/yourFollowsHeader"
             android:layout_width="match_parent"
@@ -47,16 +47,13 @@
             android:textStyle="bold" />
 
         <androidx.recyclerview.widget.RecyclerView
-            android:layout_below="@+id/yourFollowsHeader"
             android:id="@+id/keysListView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_below="@+id/yourFollowsHeader"
             android:layout_marginStart="15dp"
             android:layout_marginEnd="15dp"
-            android:paddingBottom="10dp"
-            />
-
-
+            android:paddingBottom="10dp" />
 
 
     </RelativeLayout>

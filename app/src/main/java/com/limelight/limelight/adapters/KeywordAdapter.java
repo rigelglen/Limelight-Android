@@ -21,20 +21,20 @@ public class KeywordAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
     public KeywordAdapter(ArrayList<String> strings, RecyclerViewClickListener listener) {
         this.strings = strings;
-        this.mListener=listener;
+        this.mListener = listener;
     }
 
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_keyword, parent, false);
-        return new KeywordAdapter.MyViewHolder(v,mListener); // pass the view to View Holder
+        return new KeywordAdapter.MyViewHolder(v, mListener); // pass the view to View Holder
     }
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         final KeywordAdapter.MyViewHolder viewHolder = (KeywordAdapter.MyViewHolder) holder;
-        if(strings.get(position)!=null)
+        if (strings.get(position) != null)
             viewHolder.topicName.setText(strings.get(position));
     }
 

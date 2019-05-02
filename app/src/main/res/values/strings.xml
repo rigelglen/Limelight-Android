@@ -52,5 +52,5 @@
     <string name="source_placeholder">SOME SOURCE</string>
     <string name="click_to_follow">Keywords (Click to Follow)</string>
 
-
+    <string name="appbar_scrolling_view_behavior">com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior</string>
 </resources>

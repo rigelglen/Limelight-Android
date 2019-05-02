@@ -32,6 +32,7 @@ import java.util.regex.Pattern;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+
 import br.com.simplepass.loadingbutton.customViews.CircularProgressButton;
 import cn.pedant.SweetAlert.SweetAlertDialog;
 import kotlin.Unit;
